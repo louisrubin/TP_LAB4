@@ -21,3 +21,6 @@ Route::get('/', function () {
 
 Route::get('/calculate', [CalculationController::class, 'showForm'])->name('calculate.form');
 Route::post('/calculate', [CalculationController::class, 'calculate'])->name('calculate.result');
+
+
+Route::get('/saludo', [App\Http\Controllers\mensajesController::class, 'saludo'])->name('saludo.form');

@@ -13,6 +13,7 @@ class CalculationController extends Controller
 
     public function calculate(Request $request)
     {
+        
         $operation = $request->input('operation');
         $number1 = $request->input('number1');
         $number2 = $request->input('number2');
