@@ -1,6 +1,11 @@
 <?php
 use App\Http\Controllers\CalculationController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Student;
+use App\Models\Course;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +29,23 @@ Route::post('/calculate', [CalculationController::class, 'calculate'])->name('ca
 
 
 Route::get('/saludo', [App\Http\Controllers\mensajesController::class, 'saludo'])->name('saludo.form');
+
+
+Route::get('/create-student', function() {
+     $student = new Student();
+     $student->name = 'Juan Pérez';
+     $student->email = 'juan.perez@example.com';
+     //$student->course_id = 1; // Asegúrate de que el curso con ID 1 exista
+     $student->save();
+        return 'Estudiante creado exitosamente';
+    });
+
+
+    Route::get('/create-course', function() {
+        $course = new Course();
+        $course->name = 'Fisica';
+        
+        $course->save();
+           return 'Curso creado exitosamente';
+       });
+    
