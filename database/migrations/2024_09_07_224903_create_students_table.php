@@ -18,7 +18,6 @@ class CreateStudentsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
-
             $table->timestamps();
         });
     }
