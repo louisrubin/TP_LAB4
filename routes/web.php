@@ -85,9 +85,47 @@ Route::get('/create-student', function() {
 Route::get('/get-course-with-students/{course_id}', function ($course_id) {
     $course = Course::with('students')->find($course_id);
     
+    dd($course);
     if ($course) {
         return $course->students;  // Muestra la lista de estudiantes
     } else {
         return "El curso no se encontró.";
     }
 });
+
+Route::get('/update-student/{id}', function($id) {
+    $student = Student::find($id);
+    
+    if ($student) {
+            $student->name = 'Pedro Navaja';
+            $student->email = 'pedro.navaja@example.com';
+            $student->save();
+    
+            return 'Estudiante actualizado exitosamente';
+        } else {
+           return 'Estudiante no encontrado';
+       }
+    });
+    
+    Route::get('/delete-student/{id}', function($id) {
+        $student = Student::find($id);
+          if ($student) {
+              $student->delete();
+        return 'Estudiante eliminado exitosamente';
+              } else {
+              return 'Estudiante no encontrado';
+             }
+        });
+        
+
+        Route::get('/student/{id}', function($id) {
+            $student = Student::find($id);
+
+            dd($student) ;
+            if ($student) {
+               return $student->id . ' - ' . $student->name . ' - ' . $student->email;
+                } else {
+               return 'Estudiante no encontrado';
+             }
+            });
+            
