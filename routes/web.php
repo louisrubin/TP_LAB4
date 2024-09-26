@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\CalculationController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\Course;
@@ -128,4 +129,7 @@ Route::get('/update-student/{id}', function($id) {
                return 'Estudiante no encontrado';
              }
             });
+
+
+            Route::resource('students',StudentController::class);
             
