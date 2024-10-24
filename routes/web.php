@@ -27,9 +27,12 @@ Route::get('/', function () {
 
 Route::get('/calculate', [CalculationController::class, 'showForm'])->name('calculate.form');
 Route::post('/calculate', [CalculationController::class, 'calculate'])->name('calculate.result');
-
+Route::get('/mostrar_formulario', function() {
+    return view('calculate', ['result' => "Este es el resultado"]);
+   });
 
 Route::get('/saludo', [App\Http\Controllers\mensajesController::class, 'saludo'])->name('saludo.form');
+
 
 
 Route::get('/create-student', function() {
@@ -133,3 +136,12 @@ Route::get('/update-student/{id}', function($id) {
 
             Route::resource('students',StudentController::class);
             
+
+
+            Route::get('/blog', function () {
+                return view('nueva_vista.blog'); // Muestra la vista del blog
+            });
+            
+            Route::get('/contacto', function () {
+                return view('nueva_vista.contacto'); // Muestra la vista de contacto
+            });
