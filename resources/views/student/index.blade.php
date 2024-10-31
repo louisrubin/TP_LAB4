@@ -1,6 +1,8 @@
-@extends('layouts.app')
-@section('title','Brows Student')  
-@section('content')  
+@extends('layouts.invention')
+
+@section('titulo', 'Brows Student ')
+
+@section('contenido')
 <h1>Students</h1>  
 <a href="{{ route('students.create') }}" class="btn btn-primary">Add Student</a>
 
@@ -34,4 +36,8 @@
         @endforeach  
     </tbody>  
 </table>  
-@endsection  
+
+@endsection
+
+
+

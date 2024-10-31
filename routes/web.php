@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\Course;
@@ -135,7 +136,7 @@ Route::get('/update-student/{id}', function($id) {
 
 
             Route::resource('students',StudentController::class);
-            
+            Route::resource('courses', CourseController::class);
 
 
             Route::get('/blog', function () {

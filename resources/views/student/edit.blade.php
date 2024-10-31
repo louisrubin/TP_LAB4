@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.invention')
 
-@section('content')
+@section('titulo', 'Notas ')
+
+@section('contenido')
+
 <h1>{{ isset($student) ? 'Editar' : 'Crear' }}</h1>
 
 <form action="{{ isset($student) ? route('students.update', $student) : route('students.store') }}" method="POST">
@@ -25,4 +28,6 @@
 
     <button type="submit" class="btn btn-primary">{{ isset($student) ? 'Update' : 'Create' }}</button>
 </form>
+
 @endsection
+

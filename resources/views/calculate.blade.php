@@ -1,3 +1,8 @@
+@extends('layouts.invention')
+
+@section('titulo', 'Calculos ')
+
+@section('contenido')
 <form action="{{ route('calculate.result') }}" method="POST">
     @csrf
     <label for="number1">Número 1:</label>
@@ -20,3 +25,10 @@
 @if(isset($result))
     <h2>Resultado: {{ $result }}</h2>
 @endif
+
+@endsection
+
+
+
+
+
