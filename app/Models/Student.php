@@ -11,9 +11,13 @@ class Student extends Model
 
     protected $fillable = ['name', 'email', 'course_id'];
     
-    // Un estudiante pertenece a un curso
-    public function course()
+    public function courses()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsToMany(Course::class, 'course_student')->withPivot('commission_id');
+    }
+
+    public function commissions()
+    {
+        return $this->belongsToMany(Commission::class, 'course_student');
     }
 }

@@ -15,11 +15,12 @@ class CreateCourseTable extends Migration
     public function up()
         {
             Schema::create('courses', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
-            $table->timestamps();
-        });
+                $table->id();
+                $table->string('name');
+                $table->unsignedBigInteger('subject_id');
+                $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+                $table->timestamps();
+            });
         }
         public function down()
         {
