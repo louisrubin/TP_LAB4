@@ -7,10 +7,13 @@ public function run()
 {
 $this->call([
 SubjectsTableSeeder::class,
-ProfessorsTableSeeder::class,
 CoursesTableSeeder::class,
-CommissionsTableSeeder::class,
+
 StudentsTableSeeder::class,
+Course_studentSeeder::class,
+ProfessorsTableSeeder::class,
+
+CommissionsTableSeeder::class,
 ]);
 }
 }

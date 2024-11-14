@@ -19,12 +19,13 @@ use App\Models\Course;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 
+Route::get('/', [StudentController::class, 'index']);//indico cula sera la ruta de inicio
 
 Route::get('/calculate', [CalculationController::class, 'showForm'])->name('calculate.form');
 Route::post('/calculate', [CalculationController::class, 'calculate'])->name('calculate.result');
