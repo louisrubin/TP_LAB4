@@ -147,3 +147,13 @@ Route::get('/update-student/{id}', function($id) {
             Route::get('/contacto', function () {
                 return view('nueva_vista.contacto'); // Muestra la vista de contacto
             });
+
+
+            Route::get('/Q_Materias', [App\Http\Controllers\consultasController::class, 'listarMaterias']);
+            Route::get('/Q_Materias2', [App\Http\Controllers\consultasController::class, 'listarMaterias2']);
+            Route::get('/Q_FiltrarAlumnos', [App\Http\Controllers\consultasController::class, 'FiltrarAlumnos']);
+            Route::get('/Q_Alumnos', [App\Http\Controllers\consultasController::class, 'Alumnos']);
+            Route::get('/Q_Cursos', [App\Http\Controllers\consultasController::class, 'cursos']);
+            Route::get('/Q_alumnos_del_curso', [App\Http\Controllers\consultasController::class, 'alumnos_del_curso']);
+            Route::get('/Q_curso_materia', [App\Http\Controllers\consultasController::class, 'curso_materia']);
+           
