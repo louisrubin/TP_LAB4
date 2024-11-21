@@ -140,6 +140,8 @@ Route::get('/update-student/{id}', function($id) {
             Route::resource('courses', CourseController::class);
 
 
+
+
             Route::get('/blog', function () {
                 return view('nueva_vista.blog'); // Muestra la vista del blog
             });
