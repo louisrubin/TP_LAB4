@@ -2,6 +2,7 @@
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PanelController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\Course;
@@ -30,6 +31,9 @@ Route::get('/students2', [StudentController::class, 'allStudents'])->name('stude
 
 Route::get('/calculate', [CalculationController::class, 'showForm'])->name('calculate.form');
 Route::post('/calculate', [CalculationController::class, 'calculate'])->name('calculate.result');
+
+
+Route::get('/panel/{tipo}', [App\Http\Controllers\PanelController::class, 'index'])->name('panel.index');
 
 
     Route::resource('students', StudentController::class);

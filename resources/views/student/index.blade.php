@@ -3,7 +3,7 @@
 @section('titulo', 'Brows Student ')
 
 @section('contenido')
-<h1>Estudiantes</h1>  
+<h1>{{ titulo }}</h1>  
 
 <div class="col-md-4">
     <a href="{{ route('students.create') }}" class="btn btn-primary">Agregar Estudiante</a>
@@ -53,6 +53,12 @@
         @endforeach  
     </tbody>  
 </table>  
+
+
+<!-- Mostrar los enlaces de paginación -->
+<div class="pagination">
+    {{ $students->appends( request()->except('page'))->links('pagination::bootstrap-4') }}
+</div>
 
 @endsection
 

@@ -24,7 +24,12 @@
       <label for="course_id">Curso id</label>
       <input name="course_id" class="form-control" value="{{ old('course_id', $student->course_id ?? '') }}"  readonly>
   </div>
-
    
 </form>
+
+
+<a href="{{ url()->previous() }}">
+    <button class="btn btn-primary" type="button">Volver</button>
+</a>
+
 @endsection

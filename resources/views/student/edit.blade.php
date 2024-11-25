@@ -42,5 +42,10 @@
     <button type="submit" class="btn btn-primary">{{ isset($student) ? 'Update' : 'Create' }}</button>
 </form>
 
+
+<a href="{{ url()->previous() }}">
+    <button class="btn btn-warning" >Volver</button>
+</a>
+
 @endsection
 

@@ -17,9 +17,14 @@ class StudentController extends Controller
         return view('home');
     }
 
-    public function allStudents()
+    public function allStudents(Request $request)
     {
-        $students = Student::all();
+
+        $perPage = $request->get('per_page', 12); // Número predeterminado: 10
+
+        // Obtener los estudiantes, ordenados por creación de forma descendente
+        $students = Student::orderBy('created_at', 'desc')->paginate($perPage);
+        //$students = Student::all();
 
         return view('student.index',compact('students'));
     }
