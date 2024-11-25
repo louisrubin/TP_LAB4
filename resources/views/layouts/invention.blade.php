@@ -13,8 +13,10 @@
   <div id="content">
     <div id="header">
       <div id="logo">
-        <h1>logo here</h1>
-        <h4>have your punchline here</h4>
+        <a href="{{ route('home') }}">
+          <img src="{{ asset('images/coffee-cup-tea.png') }}" alt="Logo" style="width:100px; vertical-align: middle;">
+        </a>
+        <h4>Facultad UTN Resistencia</h4>
       </div>
       <div id="links">
         <ul>
@@ -26,8 +28,8 @@
       </div>
     </div>
     <div id="mainimg">
-      <h3>inventions</h3>
-      <h4>for a wireless world</h4>
+      <h3>Laboratorio de Programación 4</h3>
+      <h4>Sistema de Gestión Escolar en Laravel</h4>
     </div>
     <div id="contentarea">
       <div id="leftbar">
