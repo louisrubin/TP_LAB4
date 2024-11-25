@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Student;
+use App\Models\Course;
 
 class StudentController extends Controller
 {
@@ -47,23 +48,33 @@ class StudentController extends Controller
 
     public function edit($id)
     {
-        $student = Student::find($id);
+        /*$student = Student::find($id);
         return view('student.edit',compact('student'));
+        */
+        $student = Student::with('courses')->findOrFail($id);
+        $courses = Course::all(); // Obtén todos los cursos disponibles para mostrar en el formulario
+        
+        return view('student.edit', compact('student', 'courses'));
     }
 
     //
     public function update(Request $request, Student $student){
 
         //dd($request->course_id);
-        $v= $request->validate(
+        $valid= $request->validate(
             ['name'=>'required|string|max:255',
             'email'=>'required|email|unique:students,email,'.$student->id, 
-            'course_id'=>'required']
+            ]//'course_id'=>'required|exists:courses,id']
         );
 
-        $student->update($v);
+        // $student->update($v);
+        //$student = Student::findOrFail($id);
+        $student->update($valid);
+
+        // Sincroniza el curso en la tabla pivote
+        $student->courses()->sync([$request->course_id]);
         
-        return redirect()->route('students.index')->with('success','Estudiante acctualizado');
+        return redirect()->route('students.index')->with('success','Estudiante actualizado correctamente.');
     }
 
     public function show(Student $student)

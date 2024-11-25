@@ -13,7 +13,8 @@ class Student extends Model
     
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'course_student')->withPivot('commission_id');
+        return $this->belongsToMany(Course::class, 'course_student');
+                                                                        //->withPivot('commission_id');
     }
 
     public function commissions()
