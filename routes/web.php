@@ -153,7 +153,7 @@ Route::get('/update-student/{id}', function($id) {
 
             Route::get('/Q_Materias', [App\Http\Controllers\consultasController::class, 'listarMaterias']);
             Route::get('/Q_Materias2', [App\Http\Controllers\consultasController::class, 'listarMaterias2']);
-            Route::get('/Q_FiltrarAlumnos', [App\Http\Controllers\consultasController::class, 'FiltrarAlumnos']);
+            Route::get('/Q_FiltrarAlumnos', [App\Http\Controllers\consultasController::class, 'FiltrarAlumnos'])->name('students.filter');
             Route::get('/Q_Alumnos', [App\Http\Controllers\consultasController::class, 'Alumnos']);
             Route::get('/Q_Cursos', [App\Http\Controllers\consultasController::class, 'cursos']);
             Route::get('/Q_alumnos_del_curso', [App\Http\Controllers\consultasController::class, 'alumnos_del_curso']);

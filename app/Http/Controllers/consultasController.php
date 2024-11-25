@@ -25,9 +25,12 @@ class consultasController extends Controller
        return $courses = Subject::all();
     }
 
-    function FiltrarAlumnos() {
+    function FiltrarAlumnos(Request $peticion) {
         // Seleccionar todos los estudiantes cuyo nombre comience con 'A'
-       return $students = Student::where('name', 'LIKE', 'A%')->get();
+        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
+        $students = Student::where('name', 'LIKE', "$name%")->get();
+
+       return view('student.index', compact('students', 'name'));
         
     }
     function Alumnos() {

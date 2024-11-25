@@ -29,20 +29,20 @@ class StudentController extends Controller
 
       $v= $request->validate(
         ['name'=>'required|string|max:255',
-         'email'=>'required|email|unique:students,email,']
-      );
+         'email'=>'required|email|unique:students,email,',
+         //'course_id' => 'required|exists:courses,id', // Validar que el curso existe en la tabla courses 
+      ]);
+
         $student = new Student();
         $student->name = $request->name; 
         $student->email = $request->email;      
-        $student->course_id =$request->course_id;
-        $student->save();
+        //$student->course_id =$request->course_id;        
+        $student->save();    
+        
+        // Asociar el curso al estudiante en la tabla pivote
+        //$student->courses()->attach($request->course_id);
 
-    
-    
-        return redirect()->route('students.index')->with('success','Estudiante creado');
-
-
-
+        return redirect()->route('students.index')->with('success','Estudiante creado correctamente.');
 
     }
 

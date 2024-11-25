@@ -3,8 +3,25 @@
 @section('titulo', 'Brows Student ')
 
 @section('contenido')
-<h1>Students</h1>  
-<a href="{{ route('students.create') }}" class="btn btn-primary">Agregar Estudiante</a>
+<h1>Estudiantes</h1>  
+
+<div class="col-md-4">
+    <a href="{{ route('students.create') }}" class="btn btn-primary">Agregar Estudiante</a>
+</div>
+
+<form action="{{ route('students.filter') }}" method="GET" class="mb-4">
+    <div class="row">
+        <div class="col-md-6">
+            <input name="name" class="form-control" placeholder="Buscar por nombre" value="{{ request('name') }}">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+    </div>
+</form>
+
+
+
 
 @if(session('success'))  
   <div class="alert alert-success">{{ session('success') }}</div>  
@@ -29,7 +46,7 @@
                     <form action="{{ route('students.destroy', $student) }}" method="POST" style="display:inline-block;">  
                         @csrf  
                         @method('DELETE')  
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Eliminar</button>  
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                     </form>  
                 </td>  
             </tr>  

@@ -1,8 +1,9 @@
 
-@extends('layouts.app')
+@extends('layouts.invention')
 
-@section('content')
+@section('titulo', 'Notas ')
 
+@section('contenido')
 
 <form action="{{ isset($student) ? route('students.update', $student) : route('students.store') }}" method="POST">
     @csrf
@@ -12,16 +13,16 @@
 
     <div class="form-group">
         <label for="name">Nombre</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', $student->name ?? '') }}" required>
+        <input name="name" class="form-control" value="{{ old('name', $student->name ?? '') }}"  readonly>
     </div>
 
     <div class="form-group">
         <label for="email">Correo</label>
-        <input type="email" name="email" class="form-control" value="{{ old('email', $student->email ?? '') }}" required>
+        <input  name="email" class="form-control" value="{{ old('email', $student->email ?? '') }}"  readonly>
     </div>
     <div class="form-group">
       <label for="course_id">Curso id</label>
-      <input type="course_id" name="course_id" class="form-control" value="{{ old('course_id', $student->course_id ?? '') }}" required>
+      <input name="course_id" class="form-control" value="{{ old('course_id', $student->course_id ?? '') }}"  readonly>
   </div>
 
    

@@ -25,15 +25,18 @@
       <label for="course_id">Curso id</label>
       <!-- <input type="course_id" name="course_id" class="form-control" value="{{ old('course_id', $student->course_id ?? '') }}" required>
         -->
-        <select name="course_id" class="form-control" required>
-            <option value="" disabled selected>Selecciona un curso</option>
-            @foreach($courses as $course)
-                <option value="{{ $course->id }}" 
-                    {{ isset($student) && $student->courses->contains($course->id) ? 'selected' : '' }}>
-                    {{ $course->name }}
-                </option>
-            @endforeach
-        </select>
+        @if(isset($student))
+            <select name="course_id" class="form-control" required>
+                <option value="" disabled selected>Selecciona un curso</option>
+                @foreach($courses as $course)
+                    <option value="{{ $course->id }}" 
+                        {{ isset($student) && $student->courses->contains($course->id) ? 'selected' : '' }}>
+                        {{ $course->name }}
+                    </option>
+                @endforeach
+            </select>
+        @endif
+        
     </div>
 
     <button type="submit" class="btn btn-primary">{{ isset($student) ? 'Update' : 'Create' }}</button>
