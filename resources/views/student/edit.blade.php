@@ -13,12 +13,12 @@
     @endif
 
     <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">Nombre</label>
         <input type="text" name="name" class="form-control" value="{{ old('name', $student->name ?? '') }}" required>
     </div>
 
     <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">Correo</label>
         <input type="email" name="email" class="form-control" value="{{ old('email', $student->email ?? '') }}" required>
     </div>
     <div class="form-group">
