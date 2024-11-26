@@ -60,16 +60,40 @@ class PanelController extends Controller
     }
 
     public function show($tipo, $id){
-        $data = [];
+        $data = null;
+        $titulo = '';
 
         switch ($tipo) {
-            case 'alumnos':
-
+            case 'estudiantes':
+                $data = Student::with('courses')->findOrFail($id);
+                $titulo = 'Estudiante';
                 break;
-                
+
+            case 'profesores':
+                $data = Professor::with('commissions')->findOrFail($id);
+                $titulo = 'Profesor';
+                break;
+
+            case 'materias':
+                $data = Subject::with('courses')->findOrFail($id);
+                $titulo = 'Materia';
+                break;
+
+            case 'cursos':
+                $data = Course::with(['commissions', 'subject'])->findOrFail($id);
+                $titulo = 'Curso';
+                break;
+
+            case 'comisiones':
+                $data = Commission::with(['professors', 'course'])->findOrFail($id);
+                $titulo = 'Comisión';
+                break;
+
             default:
-                abort(404, 'Página no encontrada');
+                abort(404, 'Tipo de recurso no encontrado.');
         }
+
+        return view('panel.show', compact('data', 'titulo'));
     }
 }
 

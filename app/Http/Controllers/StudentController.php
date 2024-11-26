@@ -81,7 +81,9 @@ class StudentController extends Controller
     public function show(Student $student)
     {
        //dd($student->name);
-       return view('student.show',compact('student'));
+       $student = Student::with(['courses.subject', 'courses.commissions'])->findOrFail($student->id);
+       
+       return view('student.show', compact('student'));
     }
 
     //

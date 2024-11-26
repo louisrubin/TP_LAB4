@@ -1,6 +1,10 @@
 @extends('layouts.invention')
 
+@section('titulo', $titulo)
+
 @section('contenido')
+
+<title>{{ $titulo }}</title>
 
 <div class="container">
     <h1>{{ $titulo }}</h1>
@@ -39,8 +43,7 @@
                         <td>{{ $item->name }}</td>  
                         <td>{{ $item->email }}</td>  
                         <td>  
-                            <a href="{{ route('students.show', $item) }}" class="btn btn-primary">Ver</a>  
-                            <a href="{{ route('students.edit', $item) }}" class="btn btn-warning">Editar</a>  
+                            <a href="{{ route('panel.show', ['tipo' => 'estudiantes', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
@@ -57,6 +60,14 @@
                     @elseif($tipo === 'profesores')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->specialization }}</td>
+                        <td>  
+                            <a href="{{ route('students.show', $item) }}" class="btn btn-primary">Ver</a>  
+                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                                @csrf  
+                                @method('DELETE')  
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
+                            </form>  
+                        </td> 
                     @elseif($tipo === 'comisiones')
                         <td>{{ $item->aula }}</td>
                         <td>{{ $item->horario }}</td>

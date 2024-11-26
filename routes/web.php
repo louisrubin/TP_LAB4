@@ -34,7 +34,7 @@ Route::post('/calculate', [CalculationController::class, 'calculate'])->name('ca
 
 
 Route::get('/panel/{tipo}', [App\Http\Controllers\PanelController::class, 'index'])->name('panel.index');
-Route::get('/panel/show/{tipo}', [App\Http\Controllers\PanelController::class, 'show'])->name('panel.show');
+Route::get('/panel/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'show'])->name('panel.show');
 
 
 // ########################
