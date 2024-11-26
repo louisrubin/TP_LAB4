@@ -21,5 +21,8 @@ class Course extends Model
         return $this->hasMany(Commission::class);
     }
 
-
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class, 'subject_id'); // Clave foránea en la tabla `courses`
+    }
 }

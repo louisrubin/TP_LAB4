@@ -6,7 +6,7 @@
     <h1>{{ $titulo }}</h1>
     
 <div class="col-md-4">
-    <a href="{{ route('students.create') }}" class="btn btn-primary" style="color: white";>Agregar Estudiante</a>
+    <a href="{{ route('students.create') }}" class="btn btn-primary" style="color: white";>Agregar {{ $titulo }}</a>
 </div>
     <table class="table">
         <thead>
@@ -15,14 +15,19 @@
                     <th>Nombre</th>
                     <th>Correo</th>
                 @elseif($tipo === 'materias')
+                    <th>ID</th>
                     <th>Nombre</th>
-                    <th>Descripción</th>
                 @elseif($tipo === 'cursos')
                     <th>Nombre</th>
                     <th>Materia</th>
                 @elseif($tipo === 'profesores')
                     <th>Nombre</th>
-                    <th>Correo</th>
+                    <th>Especialización</th>
+                @elseif($tipo === 'comisiones')
+                    <th>Aula</th>
+                    <th>Horario</th>
+                    <th>Curso</th>
+                    <th>Profesor</th>
                 @endif
                 <th>Acción</th>
             </tr>
@@ -44,22 +49,24 @@
                         </td>   
 
                     @elseif($tipo === 'materias')
+                        <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->description }}</td>
-                        <td>{{ $item->created_at->format('d-m-Y') }}</td>
                     @elseif($tipo === 'cursos')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->subject->name ?? 'Sin asignar' }}</td>
-                        <td>{{ $item->created_at->format('d-m-Y') }}</td>
                     @elseif($tipo === 'profesores')
                         <td>{{ $item->name }}</td>
-                        <td>{{ $item->email }}</td>
-                        <td>{{ $item->created_at->format('d-m-Y') }}</td>
+                        <td>{{ $item->specialization }}</td>
+                    @elseif($tipo === 'comisiones')
+                        <td>{{ $item->aula }}</td>
+                        <td>{{ $item->horario }}</td>
+                        <td>{{ $item->course_id }}</td>
+                        <td>{{ $item->professor_id }}</td>
                     @endif
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3">No se encontraron registros</td>
+                    <td colspan="3">No se encontraron {{titulo}}.</td>
                 </tr>
             @endforelse
         </tbody>
