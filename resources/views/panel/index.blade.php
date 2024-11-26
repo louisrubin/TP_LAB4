@@ -54,9 +54,25 @@
                     @elseif($tipo === 'materias')
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
+                        <td>  
+                            <a href="{{ route('panel.show', ['tipo' => 'materias', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                                @csrf  
+                                @method('DELETE')  
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
+                            </form>  
+                        </td> 
                     @elseif($tipo === 'cursos')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->subject->name ?? 'Sin asignar' }}</td>
+                        <td>  
+                            <a href="{{ route('panel.show', ['tipo' => 'cursos', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                                @csrf  
+                                @method('DELETE')  
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
+                            </form>  
+                        </td> 
                     @elseif($tipo === 'profesores')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->specialization }}</td>

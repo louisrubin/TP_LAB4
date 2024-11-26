@@ -14,8 +14,8 @@ class Subject extends Model
     /**
      * Relación con Course: un Subject puede tener muchos Courses.
      */
-    // public function courses()
-    // {
-    //     return $this->hasMany(Course::class, 'subject_id');
-    // }
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'subject_id');
+    }
 }
