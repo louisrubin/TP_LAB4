@@ -45,7 +45,9 @@ class PanelController extends Controller
                 break;
             
             case 'comisiones':
-                $data = Commission::orderBy('created_at', 'desc')->paginate(12);
+                $data = Commission::with(['course', 'professors'])
+                                    ->orderBy('created_at', 'desc')
+                                    ->paginate(12);
                 $titulo = 'Comisiones';
                 $ruta = 'commissions.create';
                 break;

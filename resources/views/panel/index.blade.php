@@ -60,8 +60,16 @@
                     @elseif($tipo === 'comisiones')
                         <td>{{ $item->aula }}</td>
                         <td>{{ $item->horario }}</td>
-                        <td>{{ $item->course_id }}</td>
-                        <td>{{ $item->professor_id }}</td>
+                        <td>{{ $item->course->name }}</td>
+                        <td>
+                            @if( $item->professors->isNotEmpty() )
+                                @foreach( $item->professors as $professor )
+                                    {{ $professor->name }},<br> <!-- Muestra el nombre de cada profesor en una nueva línea -->
+                                @endforeach
+                            @else
+                                No hay profesores asignados.
+                            @endif
+                        </td>
                     @endif
                 </tr>
             @empty
