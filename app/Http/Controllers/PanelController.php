@@ -86,7 +86,7 @@ class PanelController extends Controller
 
             case 'comisiones':
                 $data = Commission::with(['professors', 'course'])->findOrFail($id);
-                $titulo = 'Comisión';
+                $titulo = 'Comision';
                 break;
 
             default:

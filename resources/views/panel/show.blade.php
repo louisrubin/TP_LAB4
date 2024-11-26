@@ -7,6 +7,7 @@
 <h1>{{ $titulo ?? 'Información Detallada' }}</h1>
 
 <div class="container">
+
     {{-- Estudiantes --}}
     @if ($titulo === 'Estudiante')
         <h2>Información del Estudiante</h2>
@@ -32,7 +33,7 @@
 
         
         <!-- Mostrando el cursos del estudiante -->
-        <h2>Sus Cursos y Materias</h2>
+        <h2>Cursos y Materias</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -54,33 +55,71 @@
             @endforelse
         </table>
 
-
-
-
-
-
-
-
-
-
-
+<!-- ####################################################################################### -->
 
 
     {{-- Profesores --}}
-    @elseif ($titulo === 'profesores')
+    @elseif ($titulo === 'Profesor')
         <h2>Información del Profesor</h2>
-        <p><strong>Nombre:</strong> {{ $data->name }}</p>
-        <p><strong>Comisiones Asignadas:</strong></p>
-        <ul>
+
+        <!-- Mostrando el ID del profesor -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Especialización</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $data->id }}</td>
+                    <td>{{ $data->name }}</td>
+                    <td>{{ $data->specialization }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <!-- Mostrando el cursos del profesor -->
+        <h2>Aulas y Cursos</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Aula</th>
+                    <th>Curso</th>
+                    <th>Horario</th>
+                </tr>
+            </thead>
             @forelse ($data->commissions as $commission)
-                <li>{{ $commission->name }} (Curso: {{ $commission->course->name ?? 'Sin Curso' }})</li>
+                <tbody>
+                    <tr>
+                        <td>{{ $commission->id }}</td>
+                        <td>{{ $commission->aula }}</td>
+                        <td>{{ $commission->course->name }}</td>
+                        <td>{{ $commission->horario }}</td>
+                    </tr>
+                </tbody>
             @empty
-                <li>No tiene comisiones asignadas.</li>
+                <p>El profesor no está asignado a nigún curso.</p>
             @endforelse
-        </ul>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+
 
     {{-- Materias --}}
-    @elseif ($titulo === 'materias')
+    @elseif ($titulo === 'Materia')
         <h2>Información de la Materia</h2>
         <p><strong>Nombre:</strong> {{ $data->name }}</p>
         <p><strong>Cursos Asociados:</strong></p>
@@ -92,8 +131,18 @@
             @endforelse
         </ul>
 
+
+        <h2>Información del Estudiante</h2>
+
+
+
+
+
+
+
+
     {{-- Cursos --}}
-    @elseif ($titulo === 'cursos')
+    @elseif ($titulo === 'Curso')
         <h2>Información del Curso</h2>
         <p><strong>Nombre:</strong> {{ $data->name }}</p>
         <p><strong>Materia:</strong> {{ $data->subject->name ?? 'Sin Materia Asociada' }}</p>
@@ -107,7 +156,7 @@
         </ul>
 
     {{-- Comisiones --}}
-    @elseif ($titulo === 'comisiones')
+    @elseif ($titulo === 'Comision')
         <h2>Información de la Comisión</h2>
         <p><strong>Nombre:</strong> {{ $data->name }}</p>
         <p><strong>Curso:</strong> {{ $data->course->name ?? 'Sin Curso Asociado' }}</p>

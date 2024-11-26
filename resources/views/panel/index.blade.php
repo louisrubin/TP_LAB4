@@ -61,7 +61,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->specialization }}</td>
                         <td>  
-                            <a href="{{ route('students.show', $item) }}" class="btn btn-primary">Ver</a>  
+                            <a href="{{ route('panel.show', ['tipo' => 'profesores', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
