@@ -1,0 +1,54 @@
+@extends('layouts.invention')
+
+@section('titulo', $titulo)
+
+@section('contenido')
+
+
+<h5>{{ $student }}</h5>
+
+<form action="{{ route('students.update', $student) }}" method="POST">
+    @csrf
+    @if(isset($student))
+        @method('PUT')
+    @endif
+
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" class="form-control" value="{{ old('name', $student->name ?? '') }}" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Correo</label>
+        <input type="email" name="email" class="form-control" value="{{ old('email', $student->email ?? '') }}" required>
+    </div>
+    <div class="form-group">
+      <label for="course_id">Curso asignado</label>
+      <!-- <input type="course_id" name="course_id" class="form-control" value="{{ old('course_id', $student->course_id ?? '') }}" required>
+        -->
+        @if(isset($student))
+            <select name="course_id" class="form-control" required>
+                <option value="" disabled selected>Selecciona un curso</option>
+                @foreach($courses as $course)
+                    <option value="{{ $course->id }}" 
+                        {{ isset($student) && $student->courses->contains($course->id) ? 'selected' : '' }}>
+                        {{ $course->name }}
+                    </option>
+                @endforeach
+            </select>
+        @endif
+        
+    </div>
+
+    <button type="submit" class="btn btn-primary">{{ isset($student) ? 'Update' : 'Create' }}</button>
+</form>
+
+
+<a href="{{ url()->previous() }}">
+    <button class="btn btn-warning" >Volver</button>
+</a>
+
+
+
+
+@endsection

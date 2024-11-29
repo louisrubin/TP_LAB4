@@ -33,14 +33,15 @@ Route::get('/calculate', [CalculationController::class, 'showForm'])->name('calc
 Route::post('/calculate', [CalculationController::class, 'calculate'])->name('calculate.result');
 
 
+
+// ########## PANEL PERSONALIZADO PARA CADA ENTIDAD ##############
+
 Route::get('/panel/{tipo}', [App\Http\Controllers\PanelController::class, 'index'])->name('panel.index');
 Route::get('/panel/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'show'])->name('panel.show');
 
-
-// ########################
-Route::get('/{tipo}/edit/{id?}', [App\Http\Controllers\PanelController::class, 'edit'])->name('dynamic.edit');
-Route::post('/{tipo}/store', [App\Http\Controllers\PanelController::class, 'store'])->name('dynamic.store');
-Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('dynamic.update');
+Route::get('/{tipo}/edit/{id?}', [App\Http\Controllers\PanelController::class, 'edit'])->name('panel.edit');
+Route::post('/{tipo}/store', [App\Http\Controllers\PanelController::class, 'store'])->name('panel.store');
+Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');
 
 
     Route::resource('students', StudentController::class);

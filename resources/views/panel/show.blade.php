@@ -4,7 +4,13 @@
 
 @section('contenido')
 
-<h1>{{ $titulo ?? 'Información Detallada' }}</h1>
+<div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
+    <h1 style="margin: 0;">{{ $titulo ?? 'Información Detallada' }}</h1>
+    <a href="{{ route('panel.edit', ['tipo' => 'estudiante', 'id' => $data->id ] ) }}">
+        <button class="btn btn-primary">Editar {{ $titulo }}</button>
+    </a>
+</div>
+
 
 <div class="container">
 
@@ -105,14 +111,6 @@
                 <p>El profesor no está asignado a nigún curso.</p>
             @endforelse
         </table>
-
-
-
-
-
-
-
-
 
 
 
@@ -240,7 +238,9 @@
         <p>No hay información disponible para esta entidad.</p>
     @endif
 
-    <a href="{{ url()->previous() }}" class="btn btn-secondary">Volver</a>
+    <a href="{{ url()->previous() }}">
+        <button class="btn btn-secondary">Volver</button>
+    </a>
 </div>
 
 

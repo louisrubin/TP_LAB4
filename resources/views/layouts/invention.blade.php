@@ -12,18 +12,18 @@
 <div id="wrapper">
   <div id="content">
     <div id="header">
-      <div id="logo">
+      <div id="logo" style="width: 133px;">
         <a href="{{ route('home') }}">
           <img src="{{ asset('images/coffee-cup-tea.png') }}" alt="Logo" style="width:100px; vertical-align: middle;">
         </a>
-        <h4>Facultad UTN Resistencia</h4>
       </div>
       <div id="links">
         <ul>
-          <li><a href="{{ url('/blog') }}">Blog</a></li>
-          <li><a href="{{ route('students.index') }}">Estudiantes</a></li>          
-          <li><a href="{{ action([App\Http\Controllers\CalculationController::class, 'showForm']) }}">Cálculo</a></li>
-          <li><a href="{{ url('/contacto') }}">Contacto</a></li>
+          <li><a href="{{ route('panel.index', 'alumnos') }}">Estudiantes</a></li>
+          <li><a href="{{ route('panel.index', 'profesore') }}">Profesores</a></li>          
+          <li><a href="{{ route('panel.index', 'materias') }}">Materias</a></li>
+          <li><a href="{{ route('panel.index', 'cursos') }}">Cursos</a></li>
+          <li><a href="{{ route('panel.index', 'comisiones') }}">Comisiones</a></li>
         </ul>
       </div>
     </div>
@@ -37,13 +37,15 @@
       </div>
       <div id="rightbar">
         
-        <h2>latest news</h2>
+        <h2>Últimas noticias</h2>
         <p>
           <a href="javascript:history.back()"> Volver </a> <br>
           <a href="{{ url()->previous() }}">Regresar</a>
          </p>
-        <p><span class="orangetext">12/08/2006</span><br />
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Utid anisl nec leo congue fringilla. <br />
+        <p><span class="orangetext">29/11/2024</span><br />
+          Los estudiantes de Laboratorio de Programación 4 de la UTN desarrollaron una novedosa calculadora.
+          <a href="{{ action([App\Http\Controllers\CalculationController::class, 'showForm']) }}">Click aquí</a>
+          <br />
           <br />
           <span class="orangetext">10/08/2006</span><br />
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Utid anisl nec leo congue fringilla. <br />
@@ -55,7 +57,7 @@
     <div id="bottom">
       <div id="email"><a href="mailto:info@yourcompany.com">info@yourcompany.com</a></div>
       <div id="validtext">
-        <p>Valid <a href="http://validator.w3.org/check?uri=referer">XHTML</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></p>
+        <p><a href="{{ url('/blog') }}">Blog</a> | <a href="{{ url('/contacto') }}">Contacto</a></p>
       </div>
     </div>
   </div>
