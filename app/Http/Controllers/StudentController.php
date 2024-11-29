@@ -68,14 +68,16 @@ class StudentController extends Controller
             ]//'course_id'=>'required|exists:courses,id']
         );
 
-        // $student->update($v);
-        //$student = Student::findOrFail($id);
-        $student->update($valid);
+        $courseIds = $request->input('course_id'); // Obtén solo los IDs de los cursos
 
-        // Sincroniza el curso en la tabla pivote
-        $student->courses()->sync([$request->course_id]);
-        
-        return redirect()->route('students.index')->with('success','Estudiante actualizado correctamente.');
+        // Verifica si es un array válido antes de sincronizar
+        if (is_array($courseIds)) {
+            $student->courses()->sync($courseIds); // Sincroniza los cursos seleccionados
+        } else {
+            return redirect()->back()->withErrors(['course_id' => 'Debes seleccionar al menos un curso.']);
+        }
+
+        return redirect()->route('panel.show', ['tipo'=>'estudiantes', 'id'=>$student->id])->with('success','Estudiante actualizado correctamente.');
     }
 
     public function show(Student $student)

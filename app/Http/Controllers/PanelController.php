@@ -19,7 +19,7 @@ class PanelController extends Controller
         switch($tipo){
             case 'estudiante':
                 $student = Student::with('courses')->find($id);
-                $courses = Course::orderBy('created_at', 'desc')->get();
+                $courses = Course::all();
                 $titulo = 'Editando Estudiante';
                 break;
         }

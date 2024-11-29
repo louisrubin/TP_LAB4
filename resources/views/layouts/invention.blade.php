@@ -20,7 +20,7 @@
       <div id="links">
         <ul>
           <li><a href="{{ route('panel.index', 'alumnos') }}">Estudiantes</a></li>
-          <li><a href="{{ route('panel.index', 'profesore') }}">Profesores</a></li>          
+          <li><a href="{{ route('panel.index', 'profesores') }}">Profesores</a></li>          
           <li><a href="{{ route('panel.index', 'materias') }}">Materias</a></li>
           <li><a href="{{ route('panel.index', 'cursos') }}">Cursos</a></li>
           <li><a href="{{ route('panel.index', 'comisiones') }}">Comisiones</a></li>
