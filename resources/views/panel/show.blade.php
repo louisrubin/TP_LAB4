@@ -4,6 +4,12 @@
 
 @section('contenido')
 
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
     <h1 style="margin: 0;">{{ $titulo ?? 'Información Detallada' }}</h1>
     <a href="{{ route('panel.edit', ['tipo' => 'estudiante', 'id' => $data->id ] ) }}">

@@ -77,7 +77,7 @@ class StudentController extends Controller
             return redirect()->back()->withErrors(['course_id' => 'Debes seleccionar al menos un curso.']);
         }
 
-        return redirect()->route('panel.show', ['tipo'=>'estudiantes', 'id'=>$student->id])->with('success','Estudiante actualizado correctamente.');
+        return redirect()->route('panel.show', ['tipo'=>'Estudiantes', 'id'=>$student->id])->with('success','Estudiante actualizado correctamente.');
     }
 
     public function show(Student $student)
@@ -92,6 +92,6 @@ class StudentController extends Controller
     public function destroy(Request $request,Student $student){
        //dd( $student->id);
        $student->delete();
-       return redirect()->route('students.index')->with('success','Estudiante '.$student->id.' se elimino');
+       return redirect()->route('panel.index' , 'Estudiantes')->with('success','Estudiante <'.$student->id.' - '.$student->name.'> se eliminó');
     }
 }

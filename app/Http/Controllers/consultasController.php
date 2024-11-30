@@ -29,30 +29,27 @@ class consultasController extends Controller
 
         $name = $peticion->input('name', ''); // Valor predeterminado: vacío
         $titulo = 'Estudiantes';
-        $tipo = 'alumnos';
 
         $data = Student::query()->where('name', 'LIKE', "$name%")->paginate(12);
-       return view('panel.index', compact('data', 'titulo', 'tipo'));        
+       return view('panel.index', compact('data', 'titulo'));        
     }
 
     function FiltrarProfesores(Request $peticion) {
 
         $name = $peticion->input('name', ''); // Valor predeterminado: vacío
         $titulo = 'Profesores';
-        $tipo = 'profesores';
 
         $data = Professor::query()->where('name', 'LIKE', "$name%")->paginate(12);
-       return view('panel.index', compact('data', 'titulo', 'tipo'));        
+       return view('panel.index', compact('data', 'titulo'));        
     }
 
     function FiltrarMaterias(Request $peticion) {
 
         $name = $peticion->input('name', ''); // Valor predeterminado: vacío
         $titulo = 'Materias';
-        $tipo = 'materias';
 
         $data = Subject::query()->where('name', 'LIKE', "$name%")->paginate(12);
-       return view('panel.index', compact('data', 'titulo', 'tipo'));        
+       return view('panel.index', compact('data', 'titulo'));        
     }
 
     function FiltrarEntidad(Request $peticion, $entidad) {

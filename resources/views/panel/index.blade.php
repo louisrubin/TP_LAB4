@@ -4,6 +4,12 @@
 
 @section('contenido')
 
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <title>{{ $titulo }}</title>
 
 <div class="container">
@@ -42,19 +48,19 @@
     <table class="table">
         <thead>
             <tr>
-                @if($tipo === 'alumnos')
+                @if($titulo === 'Estudiantes')
                     <th>Nombre</th>
                     <th>Correo</th>
-                @elseif($tipo === 'materias')
+                @elseif($titulo === 'Materias')
                     <th>ID</th>
                     <th>Nombre</th>
-                @elseif($tipo === 'cursos')
+                @elseif($titulo === 'Cursos')
                     <th>Nombre</th>
                     <th>Materia</th>
-                @elseif($tipo === 'profesores')
+                @elseif($titulo === 'Profesores')
                     <th>Nombre</th>
                     <th>Especialización</th>
-                @elseif($tipo === 'comisiones')
+                @elseif($titulo === 'Comisiones')
                     <th>Aula</th>
                     <th>Horario</th>
                     <th>Curso</th>
@@ -66,7 +72,7 @@
         <tbody>
             @forelse($data as $item)
                 <tr>
-                    @if($tipo === 'Estudiantes')
+                    @if($titulo === 'Estudiantes')
                         <td>{{ $item->name }}</td>  
                         <td>{{ $item->email }}</td>  
                         <td>  
@@ -78,7 +84,7 @@
                             </form>  
                         </td>   
 
-                    @elseif($tipo === 'Materias')
+                    @elseif($titulo === 'Materias')
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>  
@@ -89,7 +95,7 @@
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                             </form>  
                         </td> 
-                    @elseif($tipo === 'Cursos')
+                    @elseif($titulo === 'Cursos')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->subject->name ?? 'Sin asignar' }}</td>
                         <td>  
@@ -100,7 +106,7 @@
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                             </form>  
                         </td> 
-                    @elseif($tipo === 'Profesores')
+                    @elseif($titulo === 'Profesores')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->specialization }}</td>
                         <td>  
@@ -111,7 +117,7 @@
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                             </form>  
                         </td> 
-                    @elseif($tipo === 'Comisiones')
+                    @elseif($titulo === 'Comisiones')
                         <td>{{ $item->aula }}</td>
                         <td>{{ $item->horario }}</td>
                         <td>{{ $item->course->name }}</td>
