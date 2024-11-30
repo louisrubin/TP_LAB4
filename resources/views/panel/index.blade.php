@@ -20,20 +20,10 @@
 
     <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0; ">
       
-    @if ($titulo == 'Estudiantes')
-        <form action="{{ route('Estudiantes.filter') }}" method="GET" class="mb-4">
-    @elseif ($titulo == 'Profesores')
-        <form action="{{ route('Profesores.filter') }}" method="GET" class="mb-4">
-    @elseif ($titulo == 'Materias')
-        <form action="{{ route('Materias.filter') }}" method="GET" class="mb-4">
-    @elseif ($titulo == 'Cursos')
-        <form action="{{ route('Cursos.filter') }}" method="GET" class="mb-4">
-    @elseif ($titulo == 'Comisiones')
-        <form action="{{ route('Comisiones.filter') }}" method="GET" class="mb-4">
-    @endif
+    <form action="{{ route('entity.filter', $titulo) }}" method="GET" class="mb-4">
             <div class="row">
                 <div class="col-md-8">
-                    <input name="name" class="form-control" placeholder="Buscar {{ $data->name ?? 'por nombre' }}" value="{{ request('name') }}">
+                    <input name="name" class="form-control" placeholder="Buscar {{ $data->name ?? 'por nombre' }}" value="{{ request('name') }}" required>
                 </div>
 
                 <div class="col-md-2">

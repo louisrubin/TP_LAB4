@@ -56,13 +56,6 @@ Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 
         return view('nueva_vista.contacto'); // Muestra la vista de contacto
     });
 
-
-   // Route::get('/Q_Materias', [App\Http\Controllers\consultasController::class, 'listarMaterias']);
-    //Route::get('/Q_Materias2', [App\Http\Controllers\consultasController::class, 'listarMaterias2']);
-    Route::get('/FiltrarAlumnos', [App\Http\Controllers\consultasController::class, 'FiltrarAlumnos'])->name('Estudiantes.filter');
-    Route::get('/FiltrarProfesores', [App\Http\Controllers\consultasController::class, 'FiltrarProfesores'])->name('Profesores.filter');
-    Route::get('/FiltrarMaterias', [App\Http\Controllers\consultasController::class, 'FiltrarMaterias'])->name('Materias.filter');
-    Route::get('/FiltrarCursos', [App\Http\Controllers\consultasController::class, 'FiltrarProfesores'])->name('Cursos.filter');
-    Route::get('/FiltrarComisiones', [App\Http\Controllers\consultasController::class, 'FiltrarProfesores'])->name('Comisiones.filter');
+    Route::get('/filtrar/{entidad}', [App\Http\Controllers\consultasController::class, 'FiltrarEntidad'])->name('entity.filter');
 
            

@@ -13,47 +13,29 @@ use Illuminate\Http\Request;
 
 class consultasController extends Controller
 {
-    //Listar materias
-    function listarMaterias() {
-        // Seleccionar todos los nombres de los cursos
-       return $courses = Subject::pluck('name');
-    }
-
-    //Listar materias
-    function listarMaterias2() {
-        // Seleccionar todos los nombres de los cursos
-       return $courses = Subject::all();
-    }
-
-    function FiltrarAlumnos(Request $peticion) {
-
-        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
-        $titulo = 'Estudiantes';
-
-        $data = Student::query()->where('name', 'LIKE', "$name%")->paginate(12);
-       return view('panel.index', compact('data', 'titulo'));        
-    }
-
-    function FiltrarProfesores(Request $peticion) {
-
-        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
-        $titulo = 'Profesores';
-
-        $data = Professor::query()->where('name', 'LIKE', "$name%")->paginate(12);
-       return view('panel.index', compact('data', 'titulo'));        
-    }
-
-    function FiltrarMaterias(Request $peticion) {
-
-        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
-        $titulo = 'Materias';
-
-        $data = Subject::query()->where('name', 'LIKE', "$name%")->paginate(12);
-       return view('panel.index', compact('data', 'titulo'));        
-    }
-
+    // FILTRA POR NOMBRE PARA CADA ENTIDAD ENVIADA DESDE EL BLADE
     function FiltrarEntidad(Request $peticion, $entidad) {
 
-        // creando una funcion para que una sola funcion busque los registros dependiendo del tipo de entidad       
+        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
+        $data = null;
+        $titulo = $entidad; // necesita el blade
+
+        if ($entidad == 'Estudiantes') {
+            $data = Student::query()->where('name', 'LIKE', "$name%")->paginate(12);
+        }   
+        else if ($entidad == 'Profesores') {
+            $data = Professor::query()->where('name', 'LIKE', "$name%")->paginate(12);
+        }    
+        else if ($entidad == 'Materias') {
+            $data = Subject::query()->where('name', 'LIKE', "$name%")->paginate(12);
+        }    
+        else if ($entidad == 'Cursos') {
+            $data = Course::query()->where('name', 'LIKE', "$name%")->paginate(12);
+        }   
+        else if ($entidad == 'Comisiones') {
+            $data = Commission::query()->where('name', 'LIKE', "$name%")->paginate(12);
+        }  
+        
+       return view('panel.index', compact('data', 'titulo')); 
     }
 }
