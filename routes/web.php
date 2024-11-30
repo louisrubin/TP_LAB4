@@ -57,8 +57,12 @@ Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 
     });
 
 
-    Route::get('/Q_Materias', [App\Http\Controllers\consultasController::class, 'listarMaterias']);
-    Route::get('/Q_Materias2', [App\Http\Controllers\consultasController::class, 'listarMaterias2']);
-    Route::get('/Q_FiltrarAlumnos', [App\Http\Controllers\consultasController::class, 'FiltrarAlumnos'])->name('students.filter');
+   // Route::get('/Q_Materias', [App\Http\Controllers\consultasController::class, 'listarMaterias']);
+    //Route::get('/Q_Materias2', [App\Http\Controllers\consultasController::class, 'listarMaterias2']);
+    Route::get('/FiltrarAlumnos', [App\Http\Controllers\consultasController::class, 'FiltrarAlumnos'])->name('Estudiantes.filter');
+    Route::get('/FiltrarProfesores', [App\Http\Controllers\consultasController::class, 'FiltrarProfesores'])->name('Profesores.filter');
+    Route::get('/FiltrarMaterias', [App\Http\Controllers\consultasController::class, 'FiltrarMaterias'])->name('Materias.filter');
+    Route::get('/FiltrarCursos', [App\Http\Controllers\consultasController::class, 'FiltrarProfesores'])->name('Cursos.filter');
+    Route::get('/FiltrarComisiones', [App\Http\Controllers\consultasController::class, 'FiltrarProfesores'])->name('Comisiones.filter');
 
            

@@ -31,16 +31,14 @@ class PanelController extends Controller
     {
         $data = [];
         $titulo = '';
-        $courses = null;
-        $buscarPor = '';
+        
         // Seleccionar qué datos cargar según el tipo
         switch ($tipo) {
             case 'alumnos':
                 $data = Student::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Estudiantes';
-                $courses = Course::all();
                 
-                return view('panel.index', compact('data', 'courses', 'tipo', 'titulo',));
+                return view('panel.index', compact('data', 'tipo', 'titulo',));
                 break;
             
             case 'materias':

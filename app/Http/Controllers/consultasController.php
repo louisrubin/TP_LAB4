@@ -29,22 +29,34 @@ class consultasController extends Controller
 
         $name = $peticion->input('name', ''); // Valor predeterminado: vacío
         $titulo = 'Estudiantes';
-        $courses = Course::all();   // PETICION TODOS LOS CURSOS
         $tipo = 'alumnos';
 
-        
-        $students = Student::query();
-
-        // Filtro por nombre si el campo no está vacío
-        if (!empty($name)) {
-            $students->where('name', 'LIKE', "$name%");
-        }
-
-        // Obtener los resultados
-        $data = $students->paginate(12);
-
-       return view('panel.index', compact('data', 'courses', 'titulo', 'tipo'));
-        
+        $data = Student::query()->where('name', 'LIKE', "$name%")->paginate(12);
+       return view('panel.index', compact('data', 'titulo', 'tipo'));        
     }
 
+    function FiltrarProfesores(Request $peticion) {
+
+        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
+        $titulo = 'Profesores';
+        $tipo = 'profesores';
+
+        $data = Professor::query()->where('name', 'LIKE', "$name%")->paginate(12);
+       return view('panel.index', compact('data', 'titulo', 'tipo'));        
+    }
+
+    function FiltrarMaterias(Request $peticion) {
+
+        $name = $peticion->input('name', ''); // Valor predeterminado: vacío
+        $titulo = 'Materias';
+        $tipo = 'materias';
+
+        $data = Subject::query()->where('name', 'LIKE', "$name%")->paginate(12);
+       return view('panel.index', compact('data', 'titulo', 'tipo'));        
+    }
+
+    function FiltrarEntidad(Request $peticion) {
+
+        // creando una funcion para que una sola funcion busque los registros dependiendo del tipo de entidad        
+    }
 }
