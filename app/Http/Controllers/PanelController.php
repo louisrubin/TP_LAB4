@@ -31,19 +31,21 @@ class PanelController extends Controller
     {
         $data = [];
         $titulo = '';
-        $ruta = '';
+        $courses = null;
+        $buscarPor = '';
         // Seleccionar qué datos cargar según el tipo
         switch ($tipo) {
             case 'alumnos':
                 $data = Student::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Estudiantes';
-                $ruta = 'students.create';
+                $courses = Course::all();
+                
+                return view('panel.index', compact('data', 'courses', 'tipo', 'titulo',));
                 break;
             
             case 'materias':
                 $data = Subject::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Materias';
-                $ruta = 'subjects.create';
                 break;
             
             case 'cursos':
@@ -51,13 +53,11 @@ class PanelController extends Controller
                         ->orderBy('created_at', 'desc') // Ordenar por fecha de creación, de más reciente a más antiguo
                         ->paginate(12);
                 $titulo = 'Cursos';
-                $ruta = 'courses.create';
                 break;
             
             case 'profesores':
                 $data = Professor::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Profesores';
-                $ruta = 'professors.create';
                 break;
             
             case 'comisiones':
@@ -65,14 +65,13 @@ class PanelController extends Controller
                                     ->orderBy('created_at', 'desc')
                                     ->paginate(12);
                 $titulo = 'Comisiones';
-                $ruta = 'commissions.create';
                 break;
 
             default:
                 abort(404, 'Página no encontrada');
         }
 
-        return view('panel.index', compact('data', 'titulo', 'tipo', 'ruta'));
+        return view('panel.index', compact('data', 'titulo', 'tipo',));
     }
 
     public function show($tipo, $id){
