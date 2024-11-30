@@ -66,11 +66,11 @@
         <tbody>
             @forelse($data as $item)
                 <tr>
-                    @if($tipo === 'alumnos')
+                    @if($tipo === 'Estudiantes')
                         <td>{{ $item->name }}</td>  
                         <td>{{ $item->email }}</td>  
                         <td>  
-                            <a href="{{ route('panel.show', ['tipo' => 'estudiantes', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
@@ -78,40 +78,40 @@
                             </form>  
                         </td>   
 
-                    @elseif($tipo === 'materias')
+                    @elseif($tipo === 'Materias')
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
                         <td>  
-                            <a href="{{ route('panel.show', ['tipo' => 'materias', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                             </form>  
                         </td> 
-                    @elseif($tipo === 'cursos')
+                    @elseif($tipo === 'Cursos')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->subject->name ?? 'Sin asignar' }}</td>
                         <td>  
-                            <a href="{{ route('panel.show', ['tipo' => 'cursos', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                             </form>  
                         </td> 
-                    @elseif($tipo === 'profesores')
+                    @elseif($tipo === 'Profesores')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->specialization }}</td>
                         <td>  
-                            <a href="{{ route('panel.show', ['tipo' => 'profesores', 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
                             </form>  
                         </td> 
-                    @elseif($tipo === 'comisiones')
+                    @elseif($tipo === 'Comisiones')
                         <td>{{ $item->aula }}</td>
                         <td>{{ $item->horario }}</td>
                         <td>{{ $item->course->name }}</td>

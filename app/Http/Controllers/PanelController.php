@@ -34,31 +34,31 @@ class PanelController extends Controller
         
         // Seleccionar qué datos cargar según el tipo
         switch ($tipo) {
-            case 'alumnos':
+            case 'Estudiantes':
                 $data = Student::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Estudiantes';
                 
                 return view('panel.index', compact('data', 'tipo', 'titulo',));
                 break;
             
-            case 'materias':
+            case 'Materias':
                 $data = Subject::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Materias';
                 break;
             
-            case 'cursos':
+            case 'Cursos':
                 $data = Course::with('subject')
                         ->orderBy('created_at', 'desc') // Ordenar por fecha de creación, de más reciente a más antiguo
                         ->paginate(12);
                 $titulo = 'Cursos';
                 break;
             
-            case 'profesores':
+            case 'Profesores':
                 $data = Professor::orderBy('created_at', 'desc')->paginate(12);
                 $titulo = 'Profesores';
                 break;
             
-            case 'comisiones':
+            case 'Comisiones':
                 $data = Commission::with(['course', 'professors'])
                                     ->orderBy('created_at', 'desc')
                                     ->paginate(12);
@@ -77,27 +77,27 @@ class PanelController extends Controller
         $titulo = '';
 
         switch ($tipo) {
-            case 'estudiantes':
+            case 'Estudiantes':
                 $data = Student::with('courses')->findOrFail($id);
                 $titulo = 'Estudiante';
                 break;
 
-            case 'profesores':
+            case 'Profesores':
                 $data = Professor::with('commissions')->findOrFail($id);
                 $titulo = 'Profesor';
                 break;
 
-            case 'materias':
+            case 'Materias':
                 $data = Subject::with('courses')->findOrFail($id);
                 $titulo = 'Materia';
                 break;
 
-            case 'cursos':
+            case 'Cursos':
                 $data = Course::with(['commissions', 'subject'])->findOrFail($id);
                 $titulo = 'Curso';
                 break;
 
-            case 'comisiones':
+            case 'Comisiones':
                 $data = Commission::with(['professors', 'course'])->findOrFail($id);
                 $titulo = 'Comision';
                 break;

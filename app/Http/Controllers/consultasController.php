@@ -55,8 +55,8 @@ class consultasController extends Controller
        return view('panel.index', compact('data', 'titulo', 'tipo'));        
     }
 
-    function FiltrarEntidad(Request $peticion) {
+    function FiltrarEntidad(Request $peticion, $entidad) {
 
-        // creando una funcion para que una sola funcion busque los registros dependiendo del tipo de entidad        
+        // creando una funcion para que una sola funcion busque los registros dependiendo del tipo de entidad       
     }
 }

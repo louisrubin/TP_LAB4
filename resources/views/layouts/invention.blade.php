@@ -19,11 +19,11 @@
       </div>
       <div id="links">
         <ul>
-          <li><a href="{{ route('panel.index', 'alumnos') }}">Estudiantes</a></li>
-          <li><a href="{{ route('panel.index', 'profesores') }}">Profesores</a></li>          
-          <li><a href="{{ route('panel.index', 'materias') }}">Materias</a></li>
-          <li><a href="{{ route('panel.index', 'cursos') }}">Cursos</a></li>
-          <li><a href="{{ route('panel.index', 'comisiones') }}">Comisiones</a></li>
+          <li><a href="{{ route('panel.index', 'Estudiantes') }}">Estudiantes</a></li>
+          <li><a href="{{ route('panel.index', 'Profesores') }}">Profesores</a></li>          
+          <li><a href="{{ route('panel.index', 'Materias') }}">Materias</a></li>
+          <li><a href="{{ route('panel.index', 'Cursos') }}">Cursos</a></li>
+          <li><a href="{{ route('panel.index', 'Comisiones') }}">Comisiones</a></li>
         </ul>
       </div>
     </div>
