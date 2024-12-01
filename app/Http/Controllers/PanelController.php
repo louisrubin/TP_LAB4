@@ -11,18 +11,24 @@ use App\Models\Commission;
 
 class PanelController extends Controller
 {
-    public function edit($tipo, $id){        
-        $student = null;     
-        $courses = [];
+    public function edit($tipo, $id){
 
         switch($tipo){
             case 'Estudiante':
                 $student = Student::with('courses')->find($id);
                 $courses = Course::all();
+
+                return view('panel.edit', compact('student', 'courses', 'tipo'));
+                break;
+            case 'Profesor':
+                $professor = Professor::with('commissions')->find($id);
+                $tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
+                $commissions = Commission::all();
+                
+                return view('panel.edit-professor', compact('professor', 'commissions', 'tipo', 'tablaRelacion'));
                 break;
         }
 
-        return view('panel.edit', compact('student', 'courses', 'tipo'));
     }
 
     public function index($tipo)

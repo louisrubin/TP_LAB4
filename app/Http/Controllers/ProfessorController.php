@@ -35,10 +35,18 @@ class ProfessorController extends Controller
             'name' => 'sometimes|string|max:255',
             'specialization' => 'sometimes|string|max:255',
         ]);
-
         $professor->update($validated);
 
-        return $professor;
+        $comissionsIds = $request->input('commissions_id'); // Obtén solo los IDs de los cursos
+
+        // Verifica si es un array válido antes de sincronizar
+        if (is_array($comissionsIds)) {
+            $professor->commissions()->sync($comissionsIds); // Sincroniza los cursos seleccionados
+        } else {
+            return redirect()->back()->withErrors(['commissions_id' => 'Debes seleccionar al menos una comisión.']);
+        }
+
+        return redirect()->route('panel.show', ['tipo'=>'Profesores', 'id'=>$professor->id])->with('success','Profesor actualizado correctamente.');
     }
 
     public function destroy($id)

@@ -23,7 +23,7 @@
     <form action="{{ route('entity.filter', $titulo) }}" method="GET" class="mb-4">
             <div class="row">
                 <div class="col-md-8">
-                    <input name="name" class="form-control" placeholder="Buscar {{ $data->name ?? 'por nombre' }}" value="{{ request('name') }}" required>
+                    <input name="name" class="form-control" placeholder="Buscar {{ $data->name ?? 'por nombre' }}" value="{{ request('name') }}" >
                 </div>
 
                 <div class="col-md-2">

@@ -79,7 +79,7 @@ class StudentController extends Controller
             return redirect()->back()->withErrors(['course_id' => 'Debes seleccionar al menos un curso.']);
         }
 
-        return redirect()->route('panel.show', ['tipo'=>'Estudiantes', 'id'=>$student->id])->with('success','Estudiante actualizado correctamente.');
+        return redirect()->route('panel.show', ['tipo'=>'Estudiantes', 'id'=>$student->id])->with('success','Estudiante actualizado correctamente.');       
     }
 
     public function show(Student $student)
