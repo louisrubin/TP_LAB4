@@ -2,7 +2,11 @@
 
 ![banner](https://github.com/user-attachments/assets/99aaaf56-729e-4620-b3b3-0a7e22f96121)
 
-Este proyecto es una aplicación desarrollada en Laravel para gestionar estudiantes, cursos y profesores, materias y comisiones.
+Este proyecto es una aplicación desarrollada en Laravel para gestionar estudiantes, cursos, profesores, materias y comisiones.
+
+## Integrantes:
+- RUBIN AZAS M. Luis (legajo: `26472`)
+- ZAMORA Martín (legajo: ``)
 
 ---
 
