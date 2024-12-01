@@ -1,9 +1,10 @@
 @extends('layouts.invention')
 
-@section('titulo', $titulo)
+@section('titulo', $tipo)
 
 @section('contenido')
 
+<h1 style="margin-bottom: 20;">Editando {{ $tipo}}</h1>
 
 <form action="{{ route('students.update', $student) }}" method="POST">
     @csrf

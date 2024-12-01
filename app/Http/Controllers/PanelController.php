@@ -12,19 +12,17 @@ use App\Models\Commission;
 class PanelController extends Controller
 {
     public function edit($tipo, $id){        
-        $student = '';     
+        $student = null;     
         $courses = [];
-        $titulo = '';
 
         switch($tipo){
-            case 'estudiante':
+            case 'Estudiante':
                 $student = Student::with('courses')->find($id);
                 $courses = Course::all();
-                $titulo = 'Editando Estudiante';
                 break;
         }
 
-        return view('panel.edit', compact('student', 'courses', 'titulo'));
+        return view('panel.edit', compact('student', 'courses', 'tipo'));
     }
 
     public function index($tipo)

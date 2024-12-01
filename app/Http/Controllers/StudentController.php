@@ -68,6 +68,8 @@ class StudentController extends Controller
             ]//'course_id'=>'required|exists:courses,id']
         );
 
+        $student->update($valid);       // guardar los datos de name y email
+
         $courseIds = $request->input('course_id'); // Obtén solo los IDs de los cursos
 
         // Verifica si es un array válido antes de sincronizar
