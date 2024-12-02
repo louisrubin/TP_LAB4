@@ -23,8 +23,9 @@ class PanelController extends Controller
             case 'Estudiante':
                 $student = Student::with('courses')->find($id);
                 $courses = Course::all();
+                $tablaRelacion = "Curso";
 
-                return view('panel.edit', compact('student', 'courses', 'tipo'));
+                return view('panel.edit', compact('student', 'courses', 'tipo', 'tablaRelacion'));
                 break;
             case 'Profesor':
                 $professor = Professor::with('commissions')->find($id);
@@ -89,7 +90,13 @@ class PanelController extends Controller
 
     public function show($tipo, $id){
         $data = null;
-        $titulo = substr($tipo, 0, -1);     // elimina el ultimo caracter 'Estudiantes' -> 'Estudiante'
+        if ($tipo == 'Profesores') {
+            $titulo = 'Profesor';
+        } elseif ($tipo == 'Comisiones'){
+            $titulo = 'Comision';
+        } else {
+            $titulo = substr($tipo, 0, -1) ;  // elimina el ultimo caracter 'Estudiantes' -> 'Estudiante'
+        }
 
         switch ($tipo) {
             case 'Estudiantes':

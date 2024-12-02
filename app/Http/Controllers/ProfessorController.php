@@ -7,11 +7,6 @@ use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
 {
-    public function index()
-    {
-        return Professor::all();
-    }
-
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -20,7 +15,7 @@ class ProfessorController extends Controller
         ]);
 
         Professor::create($validated);
-        
+
         return redirect()->route('panel.index', 'Profesores')->with('success','Profesor creado correctamente.');
     }
 

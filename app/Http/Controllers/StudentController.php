@@ -11,22 +11,17 @@ class StudentController extends Controller
     //
     public function index()
     {
-        //$students = Student::all();
-
-        //return view('student.index',compact('students'));
         return view('home');
     }
 
-    //
+    /*/
     public function create()
     {
         return view('student.edit');
     }
 
-    //
+    /*/
     public function store(Request $request){
-      
-      //dd($request->name .' email    '.$request->email);
 
       $v= $request->validate(
         ['name'=>'required|string|max:255',
@@ -43,7 +38,7 @@ class StudentController extends Controller
         // Asociar el curso al estudiante en la tabla pivote
         //$student->courses()->attach($request->course_id);
 
-        return redirect()->route('students.index')->with('success','Estudiante creado correctamente.');
+        return redirect()->route('panel.index' , 'Estudiantes')->with('success','Estudiante creado correctamente.');
 
     }
 
