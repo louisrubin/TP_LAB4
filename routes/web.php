@@ -41,8 +41,8 @@ Route::get('/panel/{tipo}', [App\Http\Controllers\PanelController::class, 'index
 Route::get('/panel/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'show'])->name('panel.show');
 
 Route::get('/{tipo}/edit/{id?}', [App\Http\Controllers\PanelController::class, 'edit'])->name('panel.edit');
-Route::post('/{tipo}/store', [App\Http\Controllers\PanelController::class, 'store'])->name('panel.store');
-Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');
+Route::get('/create/{tipo}', [App\Http\Controllers\PanelController::class, 'create'])->name('panel.create');   
+Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');   
 
 
     Route::resource('students', StudentController::class);

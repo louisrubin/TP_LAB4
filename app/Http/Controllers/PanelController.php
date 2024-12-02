@@ -11,6 +11,12 @@ use App\Models\Commission;
 
 class PanelController extends Controller
 {
+    public function create($tipo){
+        return view('panel.create', ['tipo' => $tipo]);
+    }
+
+
+
     public function edit($tipo, $id){
 
         switch($tipo){
@@ -27,46 +33,51 @@ class PanelController extends Controller
                 
                 return view('panel.edit-professor', compact('professor', 'commissions', 'tipo', 'tablaRelacion'));
                 break;
+
+                
+            case 'Materia':
+                /*$subject = Subject::with('commissions')->find($id);
+                $tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
+                $commissions = Commission::all();
+                
+                return view('panel.edit-professor', compact('professor', 'commissions', 'tipo', 'tablaRelacion'));
+                break;
+                */
         }
 
     }
 
     public function index($tipo)
     {
-        $data = [];
-        $titulo = '';
+        $data = null;
+        $titulo = $tipo;
         
         // Seleccionar qué datos cargar según el tipo
         switch ($tipo) {
             case 'Estudiantes':
                 $data = Student::orderBy('created_at', 'desc')->paginate(12);
-                $titulo = 'Estudiantes';
                 
                 return view('panel.index', compact('data', 'tipo', 'titulo',));
                 break;
             
             case 'Materias':
                 $data = Subject::orderBy('created_at', 'desc')->paginate(12);
-                $titulo = 'Materias';
                 break;
             
             case 'Cursos':
                 $data = Course::with('subject')
                         ->orderBy('created_at', 'desc') // Ordenar por fecha de creación, de más reciente a más antiguo
                         ->paginate(12);
-                $titulo = 'Cursos';
                 break;
             
             case 'Profesores':
                 $data = Professor::orderBy('created_at', 'desc')->paginate(12);
-                $titulo = 'Profesores';
                 break;
             
             case 'Comisiones':
                 $data = Commission::with(['course', 'professors'])
                                     ->orderBy('created_at', 'desc')
                                     ->paginate(12);
-                $titulo = 'Comisiones';
                 break;
 
             default:
@@ -78,32 +89,27 @@ class PanelController extends Controller
 
     public function show($tipo, $id){
         $data = null;
-        $titulo = '';
+        $titulo = substr($tipo, 0, -1);     // elimina el ultimo caracter 'Estudiantes' -> 'Estudiante'
 
         switch ($tipo) {
             case 'Estudiantes':
                 $data = Student::with('courses')->findOrFail($id);
-                $titulo = 'Estudiante';
                 break;
 
             case 'Profesores':
                 $data = Professor::with('commissions')->findOrFail($id);
-                $titulo = 'Profesor';
                 break;
 
             case 'Materias':
                 $data = Subject::with('courses')->findOrFail($id);
-                $titulo = 'Materia';
                 break;
 
             case 'Cursos':
                 $data = Course::with(['commissions', 'subject'])->findOrFail($id);
-                $titulo = 'Curso';
                 break;
 
             case 'Comisiones':
                 $data = Commission::with(['professors', 'course'])->findOrFail($id);
-                $titulo = 'Comision';
                 break;
 
             default:

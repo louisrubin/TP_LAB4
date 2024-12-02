@@ -10,12 +10,10 @@
     </div>
 @endif
 
-<title>{{ $titulo }}</title>
-
 <div class="container">
     <h1>{{ $titulo }}</h1>
     <div class="col-md-4">
-        <a href="{{ route('students.create') }}" class="btn btn-primary" style="color: white";>Agregar {{ $titulo }}</a>
+        <a href="{{ route('panel.create', $titulo) }}" class="btn btn-primary" style="color: white";>Agregar {{ $titulo }}</a>
     </div>
 
     <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0; ">

@@ -19,7 +19,9 @@ class ProfessorController extends Controller
             'specialization' => 'required|string|max:255',
         ]);
 
-        return Professor::create($validated);
+        Professor::create($validated);
+        
+        return redirect()->route('panel.index', 'Profesores')->with('success','Profesor creado correctamente.');
     }
 
     public function show($id)
