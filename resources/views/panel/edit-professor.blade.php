@@ -82,7 +82,7 @@
                 <option value="" disabled selected>Seleccionar {{ $tablaRelacion }}</option>
                 @foreach($commissions as $commissionOption)
                     <option value="{{ $commissionOption->id }}" 
-                        {{ $commissionOption->id == $commission->id ? 'selected' : '' }}>
+                        {{ $commissionOption->id }}>
                         {{ $commissionOption->aula .' ('. $commissionOption->horario .')' }}
                     </option>
                 @endforeach

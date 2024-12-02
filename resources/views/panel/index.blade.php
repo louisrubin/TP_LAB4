@@ -77,7 +77,7 @@
                         <td>{{ $item->name }}</td>
                         <td>  
                             <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
-                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                            <form action="{{ route('subjects.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
@@ -88,7 +88,7 @@
                         <td>{{ $item->subject->name ?? 'Sin asignar' }}</td>
                         <td>  
                             <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
-                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                            <form action="{{ route('courses.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
@@ -99,7 +99,7 @@
                         <td>{{ $item->specialization }}</td>
                         <td>  
                             <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
-                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                            <form action="{{ route('professors.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  

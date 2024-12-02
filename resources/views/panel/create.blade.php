@@ -1,6 +1,6 @@
 @extends('layouts.invention')
 
-@section('titulo', 'Nuevo '. $tipo )
+@section('titulo', 'Registrar '. $tipo )
 
 @section('contenido')
 
@@ -11,9 +11,9 @@
 @elseif ($tipo === 'Profesores')
     <form action="{{ route('professors.store') }}" method="POST">
 @elseif ($tipo === 'Cursos')
-    <form action="{{ route('students.store') }}" method="POST">
+    <form action="{{ route('courses.store') }}" method="POST">
 @elseif ($tipo === 'Materias')
-    <form action="{{ route('students.store') }}" method="POST">
+    <form action="{{ route('subjects.store') }}" method="POST">
 @elseif ($tipo === 'Comisiones')
     <form action="{{ route('students.store') }}" method="POST">
 @endif

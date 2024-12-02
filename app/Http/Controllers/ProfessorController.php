@@ -51,6 +51,6 @@ class ProfessorController extends Controller
         $professor = Professor::findOrFail($id);
         $professor->delete();
 
-        return response()->json(['message' => 'Professor deleted successfully']);
+        return redirect()->route('panel.index', 'Profesores')->with('success','Profesor eliminado correctamente.');
     }
 }

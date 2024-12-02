@@ -34,16 +34,34 @@ class PanelController extends Controller
                 
                 return view('panel.edit-professor', compact('professor', 'commissions', 'tipo', 'tablaRelacion'));
                 break;
-
                 
             case 'Materia':
-                /*$subject = Subject::with('commissions')->find($id);
-                $tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
-                $commissions = Commission::all();
+                $subject = Subject::find($id);
+                $tablaRelacion = "";
+                //$tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
+                //$commissions = Commission::all();
                 
-                return view('panel.edit-professor', compact('professor', 'commissions', 'tipo', 'tablaRelacion'));
+                return view('panel.edit-subject', compact('subject', 'tipo', 'tablaRelacion'));
                 break;
-                */
+            /*
+            case 'Curso':
+                $course = Course::find($id);
+                $tablaRelacion = "Estudiante";
+                //$tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
+                //$commissions = Commission::all();
+                
+                return view('panel.edit-course', compact('course', 'tipo', 'tablaRelacion'));
+                break;
+                
+            case 'Comision':
+                $commission = Commission::find($id);
+                $tablaRelacion = "Profesor";
+                //$tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
+                //$commissions = Commission::all();
+                
+                return view('panel.edit-commission', compact('commission', 'tipo', 'tablaRelacion'));
+                break;
+            */
         }
 
     }

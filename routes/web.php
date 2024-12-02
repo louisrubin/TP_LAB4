@@ -4,6 +4,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Student;
 use App\Models\Course;
@@ -40,14 +41,15 @@ Route::post('/calculate', [CalculationController::class, 'calculate'])->name('ca
 Route::get('/panel/{tipo}', [App\Http\Controllers\PanelController::class, 'index'])->name('panel.index');
 Route::get('/panel/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'show'])->name('panel.show');
 
-Route::get('/{tipo}/edit/{id?}', [App\Http\Controllers\PanelController::class, 'edit'])->name('panel.edit');
+Route::get('/edit/{tipo}/{id?}', [App\Http\Controllers\PanelController::class, 'edit'])->name('panel.edit');
 Route::get('/create/{tipo}', [App\Http\Controllers\PanelController::class, 'create'])->name('panel.create');   
-Route::put('/{tipo}/update/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');   
+Route::put('/update/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');   
 
 
     Route::resource('students', StudentController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('professors', ProfessorController::class);
+    Route::resource('subjects', SubjectController::class);
 
 
     Route::get('/blog', function () {

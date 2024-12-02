@@ -1,6 +1,6 @@
 @extends('layouts.invention')
 
-@section('titulo', $titulo ?? 'Detalle')
+@section('titulo', $titulo)
 
 @section('contenido')
 
@@ -12,6 +12,7 @@
 
 <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
     <h1 style="margin: 0;">{{ $titulo ?? 'Información Detallada' }}</h1>
+    
     <a href="{{ route('panel.edit', ['tipo' => $titulo, 'id' => $data->id ] ) }}">
         <button class="btn btn-primary">Editar {{ $titulo }}</button>
     </a>
