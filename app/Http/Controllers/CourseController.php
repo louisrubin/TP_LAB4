@@ -24,16 +24,7 @@ class CourseController extends Controller
         return redirect()->route('panel.index' , 'Cursos')->with('success','Curso creado correctamente.');
 
     }
-    /*
-    public function edit($id)
-    {
-        $student = Student::with('courses')->findOrFail($id);
-        $courses = Course::all(); // Obtén todos los cursos disponibles para mostrar en el formulario
-        
-        return view('student.edit', compact('student', 'courses'));
-    }
-    */
-    //
+
     public function update(Request $request, Course $course){
 
         //dd($request->course_id);
@@ -51,20 +42,12 @@ class CourseController extends Controller
 
         return redirect()->route('panel.show', ['tipo'=>'Cursos', 'id'=>$course->id])->with('success','Curso actualizado correctamente.');       
     }
-    /*
-    public function show(Student $student)
-    {
-        //dd($student->name);
-        $student = Student::with(['courses.subject', 'courses.commissions'])->findOrFail($student->id);
-        
-        return view('student.show', compact('student'));
-    }
 
     
-    public function destroy(Request $request, Student $student){
+    public function destroy(Course $course){
         //dd( $student->id);
-        $student->delete();
-        return redirect()->route('panel.index' , 'Estudiantes')->with('success','Estudiante <'.$student->id.' - '.$student->name.'> se eliminó');
+        $course->delete();
+        return redirect()->route('panel.index' , 'Cursos')
+                        ->with('success','Curso <'.$course->name.' - '.$course->subject->name.'> se eliminó');
     }
-        */
 }
