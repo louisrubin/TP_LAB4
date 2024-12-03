@@ -38,7 +38,17 @@
         </div>
 
     @elseif ($tipo === 'Cursos')
+        <div class="form-group">
+            <label for="subject_id">Asignar Materia</label>
+            <select name="subject_id" class="form-control" style="width: 50%;" required>
+                <option value="" disabled selected>Seleccionar Materia</option>
+                @foreach ($subjects as $subject)
+                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                @endforeach
+            </select>
+        </div>
 
+        
     @elseif ($tipo === 'Materias')
     
     @elseif ($tipo === 'Comisiones')
@@ -51,17 +61,15 @@
             <input type="text" name="horario" class="form-control" value="" required>
         </div>
 
-    @endif
-    
-    
+    @endif       
 
-    <button type="submit" class="btn btn-primary">{{ isset($student) ? 'Update' : 'Create' }}</button>
+    <button type="submit" class="btn btn-primary col-4">Crear Curso</button>
+    <a href="{{ url()->previous() }}">
+        <button class="btn btn-warning" >Volver</button>
+    </a>
 </form>
 
 
-<a href="{{ url()->previous() }}">
-    <button class="btn btn-warning" >Volver</button>
-</a>
 
 @endsection
 

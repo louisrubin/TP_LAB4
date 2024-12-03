@@ -244,7 +244,7 @@
         <p>No hay información disponible para esta entidad.</p>
     @endif
 
-    <a href="{{ url()->previous() }}">
+    <a href="{{ route('panel.index' , $tituloBtnVolver) }}">
         <button class="btn btn-secondary">Volver</button>
     </a>
 </div>

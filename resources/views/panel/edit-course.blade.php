@@ -28,7 +28,7 @@
             <!-- Contenedor para los select dinámicos -->
 
                 <div class="data-select-wrapper" style="display: flex; align-items: center; justify-content: space-between; ">
-                    <select name="subject_id" class="form-control mb-2" required>
+                    <select name="subject_id" class="form-control mb-2" style="width: 50%;" required>
                         <option value="" disabled selected>Seleccionar Materia</option>
                         @foreach($subjects as $subjectOption)
                             <option value="{{ $subjectOption->id }}" 
@@ -38,6 +38,8 @@
                         @endforeach
                     </select>
                 </div>
+
+                <hr/>
 
                 <label for="courses">Alumnos asignados</label>
                 @foreach($course->students as $student)

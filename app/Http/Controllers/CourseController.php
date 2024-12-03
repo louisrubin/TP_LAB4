@@ -8,28 +8,23 @@ use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
-    /*
+    
     public function store(Request $request){
 
         $v= $request->validate(
             ['name'=>'required|string|max:255',
-            'email'=>'required|email|unique:students,email,',
-            //'course_id' => 'required|exists:courses,id', // Validar que el curso existe en la tabla courses 
+            'subject_id' => 'required', // Validar que el curso existe en la tabla courses 
         ]);
 
-        $student = new Student();
-        $student->name = $request->name; 
-        $student->email = $request->email;      
-        //$student->course_id =$request->course_id;        
-        $student->save();    
-        
-        // Asociar el curso al estudiante en la tabla pivote
-        //$student->courses()->attach($request->course_id);
+        $course = new Course();
+        $course->name = $request->name;   
+        $course->subject_id = $request->subject_id;     
+        $course->save();
 
-        return redirect()->route('panel.index' , 'Estudiantes')->with('success','Estudiante creado correctamente.');
+        return redirect()->route('panel.index' , 'Cursos')->with('success','Curso creado correctamente.');
 
     }
-    
+    /*
     public function edit($id)
     {
         $student = Student::with('courses')->findOrFail($id);

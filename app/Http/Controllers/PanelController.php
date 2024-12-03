@@ -12,6 +12,10 @@ use App\Models\Commission;
 class PanelController extends Controller
 {
     public function create($tipo){
+        if ($tipo == "Cursos") {
+            $subjects = Subject::all();
+            return view('panel.create', compact('subjects', 'tipo'));
+        }
         return view('panel.create', ['tipo' => $tipo]);
     }
 
@@ -110,6 +114,7 @@ class PanelController extends Controller
 
     public function show($tipo, $id){
         $data = null;
+        $tituloBtnVolver = $tipo;
         if ($tipo == 'Profesores') {
             $titulo = 'Profesor';
         } elseif ($tipo == 'Comisiones'){
@@ -143,7 +148,7 @@ class PanelController extends Controller
                 abort(404, 'Tipo de recurso no encontrado.');
         }
 
-        return view('panel.show', compact('data', 'titulo'));
+        return view('panel.show', compact('data', 'titulo', 'tituloBtnVolver'));
     }
 }
 

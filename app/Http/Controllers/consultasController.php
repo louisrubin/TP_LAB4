@@ -21,19 +21,34 @@ class consultasController extends Controller
         $titulo = $entidad; // necesita el blade
 
         if ($entidad == 'Estudiantes') {
-            $data = Student::query()->where('name', 'LIKE', "$name%")->paginate(12);
+            $data = Student::query()
+                            ->where('name', 'LIKE', "$name%")
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(12);
         }   
         else if ($entidad == 'Profesores') {
-            $data = Professor::query()->where('name', 'LIKE', "$name%")->paginate(12);
+            $data = Professor::query()
+                                ->where('name', 'LIKE', "$name%")
+                                ->orderBy('created_at', 'desc')
+                                ->paginate(12);
         }    
         else if ($entidad == 'Materias') {
-            $data = Subject::query()->where('name', 'LIKE', "$name%")->paginate(12);
+            $data = Subject::query()
+                            ->where('name', 'LIKE', "$name%")
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(12);
         }    
         else if ($entidad == 'Cursos') {
-            $data = Course::query()->where('name', 'LIKE', "$name%")->paginate(12);
+            $data = Course::query()
+                            ->where('name', 'LIKE', "$name%")
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(12);
         }   
         else if ($entidad == 'Comisiones') {
-            $data = Commission::query()->where('name', 'LIKE', "$name%")->paginate(12);
+            $data = Commission::query()
+                                ->where('name', 'LIKE', "$name%")
+                                ->orderBy('created_at', 'desc')
+                                ->paginate(12);
         }  
         
        return view('panel.index', compact('data', 'titulo')); 
