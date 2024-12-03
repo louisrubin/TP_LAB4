@@ -9,11 +9,11 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'subject_id',];
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'course_student')->withPivot('commission_id');
+        return $this->belongsToMany(Student::class, 'course_student');
     }
     
     public function commissions()

@@ -43,16 +43,18 @@ class PanelController extends Controller
                 
                 return view('panel.edit-subject', compact('subject', 'tipo', 'tablaRelacion'));
                 break;
-            /*
+            
+                //  UPDATE 
             case 'Curso':
-                $course = Course::find($id);
-                $tablaRelacion = "Estudiante";
+                $course = Course::with(['students', 'subject'])->findOrFail($id);
+                $tablaRelacion = "Estudiantes";
                 //$tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
-                //$commissions = Commission::all();
+                $students = Student::all();
+                $subjects = Subject::all();
                 
-                return view('panel.edit-course', compact('course', 'tipo', 'tablaRelacion'));
+                return view('panel.edit-course', compact('course', 'students', 'subjects', 'tipo', 'tablaRelacion'));
                 break;
-                
+            /*
             case 'Comision':
                 $commission = Commission::find($id);
                 $tablaRelacion = "Profesor";
@@ -84,7 +86,7 @@ class PanelController extends Controller
                 break;
             
             case 'Cursos':
-                $data = Course::with('subject')
+                $data = Course::with(['commissions', 'subject'])
                         ->orderBy('created_at', 'desc') // Ordenar por fecha de creación, de más reciente a más antiguo
                         ->paginate(12);
                 break;
@@ -130,7 +132,7 @@ class PanelController extends Controller
                 break;
 
             case 'Cursos':
-                $data = Course::with(['commissions', 'subject'])->findOrFail($id);
+                $data = Course::with(['students', 'subject'])->findOrFail($id);
                 break;
 
             case 'Comisiones':

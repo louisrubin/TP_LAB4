@@ -168,12 +168,6 @@
 
 
 
-
-
-
-
-
-
     {{-- Cursos --}}
     @elseif ($titulo === 'Curso')
         <h2>Información del Curso</h2>
@@ -198,25 +192,30 @@
 
 
         <!-- Mostrando comisiones  -->
-        <h2>Comisiones asociadas</h2>
+        <h2>Alumnos asociadas</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Aula</th>
-                    <th>Horario</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
-            @forelse ($data->commissions as $commission)
+            @forelse ($data->students as $student)
                 <tbody>
                     <tr>
-                        <td>{{ $commission->id }}</td>
-                        <td>{{ $commission->aula }}</td>
-                        <td>{{ $commission->horario }}</td>
+                        <td>{{ $student->id }}</td>
+                        <td>{{ $student->name }}</td>
+                        <td>{{ $student->email }}</td>
+                        <td>
+                            <a href="{{ route('panel.show', ['tipo' => 'Estudiantes', 'id' => $student->id ] ) }}" class="btn btn-primary"
+                                >Ver</a>  
+                        </td>
                     </tr>
                 </tbody>
             @empty
-                <p>Sin asignar</p>
+                <p>Sin alumnos asignados.</p>
             @endforelse
         </table>
 
