@@ -45,14 +45,9 @@ class CourseController extends Controller
 
         $course->update($valid);       // guardar los datos de name y email
 
-        $studentIds = $request->input('students_id'); // Obtén solo los IDs de los cursos
+        $studentIds = $request->input('students_id', []); // obtiene la lista del blade o default vacio
 
-        // Verifica si es un array válido antes de sincronizar
-        if (is_array($studentIds)) {
-            $course->students()->sync($studentIds); // Sincroniza los cursos seleccionados
-        } else {
-            return redirect()->back()->withErrors(['students_id' => 'Debes seleccionar al menos un alumno.']);
-        }
+        $course->students()->sync($studentIds);
 
         return redirect()->route('panel.show', ['tipo'=>'Cursos', 'id'=>$course->id])->with('success','Curso actualizado correctamente.');       
     }

@@ -45,6 +45,7 @@
                 @elseif($titulo === 'Cursos')
                     <th>Nombre</th>
                     <th>Materia</th>
+                    <th>Alumnos</th>
                 @elseif($titulo === 'Profesores')
                     <th>Nombre</th>
                     <th>Especialización</th>
@@ -86,6 +87,7 @@
                     @elseif($titulo === 'Cursos')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->subject->name ?? 'Sin asignar' }}</td>
+                        <td>{{ $item->students->count() }}</td>
                         <td>  
                             <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('courses.destroy', $item) }}" method="POST" style="display:inline-block;">  

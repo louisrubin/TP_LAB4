@@ -80,23 +80,26 @@ class PanelController extends Controller
         // Seleccionar qué datos cargar según el tipo
         switch ($tipo) {
             case 'Estudiantes':
-                $data = Student::orderBy('created_at', 'desc')->paginate(12);
+                $data = Student::orderBy('created_at', 'desc')
+                                ->paginate(12);
                 
                 return view('panel.index', compact('data', 'tipo', 'titulo',));
                 break;
             
             case 'Materias':
-                $data = Subject::orderBy('created_at', 'desc')->paginate(12);
+                $data = Subject::orderBy('id', 'asc')
+                                ->paginate(12);
                 break;
             
             case 'Cursos':
-                $data = Course::with(['commissions', 'subject'])
-                        ->orderBy('created_at', 'desc') // Ordenar por fecha de creación, de más reciente a más antiguo
-                        ->paginate(12);
+                $data = Course::with(['students', 'subject'])
+                                ->orderBy('created_at', 'desc') 
+                                ->paginate(12);
                 break;
             
             case 'Profesores':
-                $data = Professor::orderBy('created_at', 'desc')->paginate(12);
+                $data = Professor::orderBy('created_at', 'desc')
+                                    ->paginate(12);
                 break;
             
             case 'Comisiones':
