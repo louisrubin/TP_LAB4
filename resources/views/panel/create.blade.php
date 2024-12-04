@@ -71,11 +71,11 @@
     @endif       
 
     <button type="submit" class="btn btn-primary col-4">Crear {{ $tipo }}</button>
-    <a href="{{ url()->previous() }}">
-        <button class="btn btn-warning" >Volver</button>
-    </a>
 </form>
 
+<a href="{{ url()->previous() }}">
+    <button class="btn btn-warning" style="margin-top: 20px;">Volver</button>
+</a>
 
 @endsection
 
