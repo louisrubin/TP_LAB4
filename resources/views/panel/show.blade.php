@@ -95,7 +95,7 @@
 
 
         <!-- Mostrando el cursos del profesor -->
-        <h2>Aulas y Cursos</h2>
+        <h2>Comisiones Asociados</h2>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -172,7 +172,7 @@
     @elseif ($titulo === 'Curso')
         <h2>Información del Curso</h2>
 
-        <!-- Mostrando el  -->
+        <!-- Mostrando el curso -->
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -191,7 +191,7 @@
         </table>
 
 
-        <!-- Mostrando comisiones  -->
+        <!-- Mostrando alumnos  -->
         <h2>Alumnos asociadas</h2>
         <table class="table table-striped">
             <thead>
@@ -222,21 +222,60 @@
 
 
 
-
-
     {{-- Comisiones --}}
     @elseif ($titulo === 'Comision')
         <h2>Información de la Comisión</h2>
-        <p><strong>Nombre:</strong> {{ $data->name }}</p>
-        <p><strong>Curso:</strong> {{ $data->course->name ?? 'Sin Curso Asociado' }}</p>
-        <p><strong>Profesores:</strong></p>
-        <ul>
+
+
+        <!-- Mostrando la comision -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Aula</th>
+                    <th>Horario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $data->id }}</td>
+                    <td>{{ $data->aula }}</td>
+                    <td>{{ $data->horario }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Mostrando profesores  -->
+        <h2>Profesores asociados</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Especialización</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
             @forelse ($data->professors as $professor)
-                <li>{{ $professor->name }}</li>
+                <tbody>
+                    <tr>
+                        <td>{{ $professor->id }}</td>
+                        <td>{{ $professor->name }}</td>
+                        <td>{{ $professor->specialization }}</td>
+                        <td>
+                            <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $professor->id ] ) }}" class="btn btn-primary"
+                                >Ver</a>  
+                        </td>
+                    </tr>
+                </tbody>
             @empty
-                <li>No tiene profesores asignados.</li>
+                <p>Sin profesores asignados.</p>
             @endforelse
-        </ul>
+        </table>
+
+
+
+
 
     {{-- Entidad no reconocida --}}
     @else

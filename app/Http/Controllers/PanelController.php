@@ -116,8 +116,9 @@ class PanelController extends Controller
     }
 
     public function show($tipo, $id){
-        $data = null;
+        //$data = null;
         $tituloBtnVolver = $tipo;
+
         if ($tipo == 'Profesores') {
             $titulo = 'Profesor';
         } elseif ($tipo == 'Comisiones'){
@@ -144,7 +145,7 @@ class PanelController extends Controller
                 break;
 
             case 'Comisiones':
-                $data = Commission::with(['professors', 'course'])->findOrFail($id);
+                $data = Commission::with('professors')->findOrFail($id);
                 break;
 
             default:

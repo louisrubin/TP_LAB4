@@ -59,7 +59,7 @@
                     <th>Aula</th>
                     <th>Horario</th>
                     <th>Curso</th>
-                    <th>Profesor</th>
+                    <th>Profesores</th>
                 @endif
                 <th>Acción</th>
             </tr>
@@ -125,6 +125,14 @@
                             @else
                                 No hay profesores asignados.
                             @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
+                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                                @csrf  
+                                @method('DELETE')  
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  
+                            </form> 
                         </td>
                     @endif
                 </tr>
