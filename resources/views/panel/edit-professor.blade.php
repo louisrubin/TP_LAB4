@@ -4,6 +4,13 @@
 
 @section('contenido')
 
+
+@if ($errors->has('no_commission_asigned'))
+    <div class="alert alert-danger">
+        {{ $errors->first('no_commission_asigned')}}
+    </div>
+@endif
+
 <h1 style="margin-bottom: 20;">Editando {{ $tipo}}</h1>
 
 <form action="{{ route('professors.update', $professor) }}" method="POST">
@@ -50,13 +57,13 @@
         <button type="button" id="add-data" class="btn btn-secondary mt-2">Agregar otra comisión</button>
     </div>
 
-    <button type="submit" class="btn btn-primary">{{ isset($professor) ? 'Update' : 'Create' }}</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="{{ url()->previous() }}">
+        <button class="btn btn-warning" >Volver</button>
+    </a>
 </form>
 
 
-<a href="{{ url()->previous() }}">
-    <button class="btn btn-warning" >Volver</button>
-</a>
 
 
 @endsection

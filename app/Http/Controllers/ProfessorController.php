@@ -40,7 +40,7 @@ class ProfessorController extends Controller
         if (is_array($comissionsIds)) {
             $professor->commissions()->sync($comissionsIds); // Sincroniza los cursos seleccionados
         } else {
-            return redirect()->back()->withErrors(['commissions_id' => 'Debes seleccionar al menos una comisión.']);
+            return redirect()->back()->withErrors(['no_commission_asigned' => 'Debes seleccionar al menos una comisión.']);
         }
 
         return redirect()->route('panel.show', ['tipo'=>'Profesores', 'id'=>$professor->id])->with('success','Profesor actualizado correctamente.');

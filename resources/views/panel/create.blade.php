@@ -63,7 +63,7 @@
 
     @endif       
 
-    <button type="submit" class="btn btn-primary col-4">Crear Curso</button>
+    <button type="submit" class="btn btn-primary col-4">Crear {{ $tipo }}</button>
     <a href="{{ url()->previous() }}">
         <button class="btn btn-warning" >Volver</button>
     </a>

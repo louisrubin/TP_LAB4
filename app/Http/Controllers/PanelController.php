@@ -98,7 +98,8 @@ class PanelController extends Controller
                 break;
             
             case 'Profesores':
-                $data = Professor::orderBy('created_at', 'desc')
+                $data = Professor::with('commissions')
+                                    ->orderBy('created_at', 'desc')
                                     ->paginate(12);
                 break;
             

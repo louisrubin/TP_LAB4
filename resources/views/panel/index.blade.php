@@ -55,6 +55,7 @@
                 @elseif($titulo === 'Profesores')
                     <th>Nombre</th>
                     <th>Especialización</th>
+                    <th>Comisiones</th>
                 @elseif($titulo === 'Comisiones')
                     <th>Aula</th>
                     <th>Horario</th>
@@ -105,6 +106,7 @@
                     @elseif($titulo === 'Profesores')
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->specialization }}</td>
+                        <td>{{ $item->commissions->count() }}</td>
                         <td>  
                             <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
                             <form action="{{ route('professors.destroy', $item) }}" method="POST" style="display:inline-block;">  
