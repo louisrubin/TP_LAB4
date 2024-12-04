@@ -12,9 +12,18 @@ class ProfessorController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'specialization' => 'required|string|max:255',
+            'commissions_id' => 'required|array', // Validar que sea un array
+            'commissions_id.*' => 'exists:commissions,id', // Validar que cada comisión exista
         ]);
 
-        Professor::create($validated);
+        // Crear el profesor
+        $professor = Professor::create([
+            'name' => $validated['name'],
+            'specialization' => $validated['specialization'],
+        ]);
+
+        // Asignar la comisión al profesor en la tabla pivote
+        $professor->commissions()->attach($validated['commissions_id']);
 
         return redirect()->route('panel.index', 'Profesores')->with('success','Profesor creado correctamente.');
     }

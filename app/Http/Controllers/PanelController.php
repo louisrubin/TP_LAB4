@@ -15,6 +15,10 @@ class PanelController extends Controller
         if ($tipo == "Cursos") {
             $subjects = Subject::all();
             return view('panel.create', compact('subjects', 'tipo'));
+            
+        } elseif ($tipo == "Profesores"){
+            $commissions = Commission::all();
+            return view('panel.create', compact('commissions', 'tipo'));
         }
         return view('panel.create', ['tipo' => $tipo]);
     }
