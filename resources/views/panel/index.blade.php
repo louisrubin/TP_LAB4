@@ -13,7 +13,9 @@
 <div class="container">
     <h1>{{ $titulo }}</h1>
     <div class="col-md-4">
-        <a href="{{ route('panel.create', $titulo) }}" class="btn btn-primary" style="color: white";>Agregar {{ $titulo }}</a>
+        <a href="{{ route('panel.create', $titulo) }}" class="btn btn-primary" style="color: white";
+                >Agregar {{ $titulo }}
+        </a>
     </div>
 
     <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0; ">
@@ -21,7 +23,11 @@
     <form action="{{ route('entity.filter', $titulo) }}" method="GET" class="mb-4">
             <div class="row">
                 <div class="col-md-8">
-                    <input name="name" class="form-control" placeholder="Buscar {{ $data->name ?? 'por nombre' }}" value="{{ request('name') }}" >
+                    @if ($titulo == 'Comisiones')
+                        <input name="nro_aula" class="form-control" placeholder="Buscar por Aula" value="" >
+                    @else
+                        <input name="name" class="form-control" placeholder="Buscar por nombre" value="" >
+                    @endif
                 </div>
 
                 <div class="col-md-2">
@@ -124,7 +130,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="3">No se encontraron {{$titulo}}.</td>
+                    <td colspan="3">No se encontraron {{ $titulo }}.</td>
                 </tr>
             @endforelse
         </tbody>
