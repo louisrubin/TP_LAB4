@@ -70,7 +70,8 @@
     @elseif ($tipo === 'Comisiones')
         <div class="form-group">
             <label for="aula">Nro. Aula</label>
-            <input type="number" name="aula" class="form-control" style="width: 50%;" required>
+            <input type="number" name="aula" class="form-control" 
+            style="width: 50%;" value="{{ old('aula') ? '' : 'selected' }}"  required>
         </div>
 
 
@@ -81,10 +82,12 @@
         
         <div class="form-group" style="display: flex; ">
             <input type="time" name="horario1" class="form-control" 
-                value="00:00" style="padding-left: 20%; margin-right: 10px;" required>
+                style="padding-left: 20%; margin-right: 10px;"
+                value="00:00" required>
 
             <input type="time" name="horario2" class="form-control" 
-                value="01:00" style="padding-left: 20%;" required>
+                style="padding-left: 20%;" 
+                value="01:00" required>
         </div>
 
         <div class="form-group">

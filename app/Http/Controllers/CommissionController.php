@@ -21,7 +21,9 @@ class CommissionController extends Controller
 
         // ingreso de horario incorrecto
         if ($request->horario1 >= $request->horario2) {
-            return redirect()->back()->with('error', 'El horario de entrada no puede ser mayor o igual al de salida.');
+            return redirect()->back()
+                ->with('error', 'El horario de entrada no puede ser mayor o igual al de salida.')
+                ->withInput();
         }
         
 
@@ -39,25 +41,28 @@ class CommissionController extends Controller
         return redirect()->route('panel.index' , 'Comisiones')->with('success','Comisión creada correctamente.');
 
     }
-    /*
-    public function update(Request $request, Course $course){
+    
+    public function update(Request $request, $id){
 
+        $commission = Commission::findOrFail($id);
         //dd($request->course_id);
         $valid= $request->validate(
-            ['name'=> 'required|string|max:255', 
-             'subject_id'=> 'required|exists:subjects,id'
+            ['aula'=> 'required|string|max:255', 
+             'horario' => 'required|string|max:255', 
+             'course_id'=> 'required|exists:courses,id',
+             'professor_id'=> 'required|exists:professors,id',
             ]
         );
+        $commission->update($valid);
 
-        $course->update($valid);       // guardar los datos de name y email
 
-        $studentIds = $request->input('students_id', []); // obtiene la lista del blade o default vacio
+        $professorsIds = $request->input('professors_id', []); // obtiene la lista del blade o default vacio
 
-        $course->students()->sync($studentIds);
+        $commission->professors()->sync($professorsIds);
 
-        return redirect()->route('panel.show', ['tipo'=>'Cursos', 'id'=>$course->id])->with('success','Curso actualizado correctamente.');       
+        return redirect()->route('panel.show', ['tipo'=>'Comisiones', 'id'=> $commission->id])->with('success','Comisión actualizado correctamente.');       
     }
-    */
+    
 
     public function destroy(Commission $commission){
         //dd( $student->id);

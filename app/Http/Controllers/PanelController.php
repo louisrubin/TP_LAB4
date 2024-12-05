@@ -67,16 +67,18 @@ class PanelController extends Controller
                 
                 return view('panel.edit-course', compact('course', 'students', 'subjects', 'tipo', 'tablaRelacion'));
                 break;
-            /*
+            
             case 'Comision':
                 $commission = Commission::find($id);
                 $tablaRelacion = "Profesor";
-                //$tablaRelacion = "Comisión";       // tabla con relacion a esta entidad para el blade                            
-                //$commissions = Commission::all();
+                $professors = Professor::all();
+                $courses = Course::all();
                 
-                return view('panel.edit-commission', compact('commission', 'tipo', 'tablaRelacion'));
+                return view('panel.edit-commission', 
+                            compact('commission', 'professors', 'courses', 'tipo', 'tablaRelacion')
+                            );
                 break;
-            */
+            
         }
 
     }
