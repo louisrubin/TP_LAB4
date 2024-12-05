@@ -151,7 +151,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Nombre</th>
+                    <th>Curso</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             @forelse ($data->courses as $course)
@@ -159,6 +160,12 @@
                     <tr>
                         <td>{{ $course->id }}</td>
                         <td>{{ $course->name }}</td>
+                        <td>
+                            <a href="{{ route('panel.show', ['tipo' => 'Cursos', 'id' => $course->id ] ) }}" 
+                            class="btn btn-primary">
+                                Ver
+                            </a> 
+                        </td>
                     </tr>
                 </tbody>
             @empty
@@ -210,8 +217,10 @@
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>
-                            <a href="{{ route('panel.show', ['tipo' => 'Estudiantes', 'id' => $student->id ] ) }}" class="btn btn-primary"
-                                >Ver</a>  
+                            <a href="{{ route('panel.show', ['tipo' => 'Estudiantes', 'id' => $student->id ] ) }}" 
+                            class="btn btn-primary">
+                                Ver
+                            </a>    
                         </td>
                     </tr>
                 </tbody>
@@ -234,6 +243,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Aula</th>
+                    <th>Curso</th>
                     <th>Horario</th>
                 </tr>
             </thead>
@@ -241,6 +251,12 @@
                 <tr>
                     <td>{{ $data->id }}</td>
                     <td>{{ $data->aula }}</td>
+                    <td>
+                        <a href="{{ route('panel.show', ['tipo' => 'Cursos', 'id' => $data->course->id ]) }}"
+                        style="padding: 0;">
+                            {{ $data->course->name }}
+                        </a>
+                    </td>
                     <td>{{ $data->horario }}</td>
                 </tr>
             </tbody>
@@ -266,8 +282,10 @@
                     <td>{{ $data->mainProfessor->name }}</td>
                     <td>{{ $data->mainProfessor->specialization }}</td>
                     <td>
-                        <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $data->mainProfessor->id ] ) }}" class="btn btn-primary"
-                            >Ver</a>  
+                        <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $data->mainProfessor->id ] ) }}" 
+                        class="btn btn-primary">
+                            Ver
+                        </a>  
                     </td>
                 </tr>
                 @forelse ($data->professors as $professor)
@@ -277,8 +295,10 @@
                             <td>{{ $professor->name }}</td>
                             <td>{{ $professor->specialization }}</td>
                             <td>
-                                <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $professor->id ] ) }}" class="btn btn-primary"
-                                    >Ver</a>  
+                                <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $professor->id ] ) }}" 
+                                class="btn btn-primary">
+                                    Ver
+                                </a>  
                             </td>
                         </tr>
                 @empty
