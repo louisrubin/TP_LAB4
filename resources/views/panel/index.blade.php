@@ -133,7 +133,7 @@
                         </td>
                         <td>
                             <a href="{{ route('panel.show', ['tipo' => $titulo, 'id' => $item->id ] ) }}" class="btn btn-primary">Ver</a>  
-                            <form action="{{ route('students.destroy', $item) }}" method="POST" style="display:inline-block;">  
+                            <form action="{{ route('commissions.destroy', $item) }}" method="POST" style="display:inline-block;">  
                                 @csrf  
                                 @method('DELETE')  
                                 <button type="submit" class="btn btn-danger" onclick="return confirm('¿Confirmar?')">Eliminar</button>  

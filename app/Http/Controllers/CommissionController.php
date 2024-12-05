@@ -57,13 +57,13 @@ class CommissionController extends Controller
 
         return redirect()->route('panel.show', ['tipo'=>'Cursos', 'id'=>$course->id])->with('success','Curso actualizado correctamente.');       
     }
-
-    /*
-    public function destroy(Course $course){
-        //dd( $student->id);
-        $course->delete();
-        return redirect()->route('panel.index' , 'Cursos')
-                        ->with('success','Curso <'.$course->name.' - '.$course->subject->name.'> se eliminó');
-    }
     */
+
+    public function destroy(Commission $commission){
+        //dd( $student->id);
+        $commission->delete();
+        return redirect()->route('panel.index' , 'Comisiones')
+                        ->with('success','Comisión <'.$commission->aula.' ('. $commission->horario . ')> se eliminó');
+    }
+    
 }
