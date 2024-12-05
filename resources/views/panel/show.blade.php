@@ -13,9 +13,16 @@
 <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0;">
     <h1 style="margin: 0;">{{ $titulo ?? 'Información Detallada' }}</h1>
     
-    <a href="{{ route('panel.edit', ['tipo' => $titulo, 'id' => $data->id ] ) }}">
-        <button class="btn btn-primary">Editar {{ $titulo }}</button>
-    </a>
+    @if($titulo == 'Comision')
+        <div>
+            <button class="btn btn-primary" disabled>Editar {{ $titulo }}</button>
+        </div>
+    @else
+        <a href="{{ route('panel.edit', ['tipo' => $titulo, 'id' => $data->id ] ) }}">
+            <button class="btn btn-primary">Editar {{ $titulo }}</button>
+        </a>
+    @endif
+
 </div>
 
 
@@ -284,7 +291,7 @@
 
                 @endforelse
                 </tbody>
-                
+
             @else
                 <p>Sin profesores asignados.</p>
             @endif
