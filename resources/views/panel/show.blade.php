@@ -256,21 +256,38 @@
                     <th>Acción</th>
                 </tr>
             </thead>
-            @forelse ($data->professors as $professor)
-                <tbody>
-                    <tr>
-                        <td>{{ $professor->id }}</td>
-                        <td>{{ $professor->name }}</td>
-                        <td>{{ $professor->specialization }}</td>
-                        <td>
-                            <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $professor->id ] ) }}" class="btn btn-primary"
-                                >Ver</a>  
-                        </td>
-                    </tr>
+
+
+            @if($data->professors->isNotEmpty() || $data->mainProfessor)
+            <tbody>
+                <tr>
+                    <td>{{ $data->mainProfessor->id }}</td>
+                    <td>{{ $data->mainProfessor->name }}</td>
+                    <td>{{ $data->mainProfessor->specialization }}</td>
+                    <td>
+                        <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $data->mainProfessor->id ] ) }}" class="btn btn-primary"
+                            >Ver</a>  
+                    </td>
+                </tr>
+                @forelse ($data->professors as $professor)
+                    
+                        <tr>
+                            <td>{{ $professor->id }}</td>
+                            <td>{{ $professor->name }}</td>
+                            <td>{{ $professor->specialization }}</td>
+                            <td>
+                                <a href="{{ route('panel.show', ['tipo' => 'Profesores', 'id' => $professor->id ] ) }}" class="btn btn-primary"
+                                    >Ver</a>  
+                            </td>
+                        </tr>
+                @empty
+
+                @endforelse
                 </tbody>
-            @empty
+                
+            @else
                 <p>Sin profesores asignados.</p>
-            @endforelse
+            @endif
         </table>
 
 

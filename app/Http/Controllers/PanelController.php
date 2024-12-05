@@ -155,7 +155,8 @@ class PanelController extends Controller
                 break;
 
             case 'Comisiones':
-                $data = Commission::with('professors')->findOrFail($id);
+                $data = Commission::with(['professors', 'mainProfessor'])
+                                    ->findOrFail($id);
                 break;
 
             default:
