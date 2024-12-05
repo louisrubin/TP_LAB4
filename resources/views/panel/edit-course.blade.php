@@ -14,7 +14,7 @@
 
     <div class="form-group">
         <label for="name">ID</label>
-        <input type="text" name="id" class="form-control" value="{{ old('id', $course->id ?? '') }}" required readonly>
+        <input type="text" name="id" class="form-control" value="{{ old('id', $course->id ?? '') }}" disabled>
     </div>
 
     <div class="form-group">

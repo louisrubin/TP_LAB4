@@ -21,7 +21,7 @@
 
     <div class="form-group">
         <label for="name">ID</label>
-        <input type="text" name="id" class="form-control" value="{{ old('id', $professor->id ?? '') }}" required readonly>
+        <input type="text" name="id" class="form-control" value="{{ old('id', $professor->id ?? '') }}" disabled>
     </div>
 
     <div class="form-group">
@@ -58,11 +58,11 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar</button>
-    <a href="{{ url()->previous() }}">
-        <button class="btn btn-warning" >Volver</button>
-    </a>
 </form>
 
+<a href="{{ url()->previous() }}">
+    <button class="btn btn-warning" >Volver</button>
+</a>
 
 
 

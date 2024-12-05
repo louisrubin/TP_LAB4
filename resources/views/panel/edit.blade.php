@@ -14,7 +14,7 @@
 
     <div class="form-group">
         <label for="name">ID</label>
-        <input type="text" name="id" class="form-control" value="{{ old('name', $student->id ?? '') }}" required readonly>
+        <input type="text" name="id" class="form-control" value="{{ old('name', $student->id ?? '') }}" disabled>
     </div>
 
     <div class="form-group">
@@ -50,7 +50,7 @@
         <button type="button" id="add-course" class="btn btn-secondary mt-2">Agregar otro curso</button>
     </div>
 
-    <button type="submit" class="btn btn-primary">{{ isset($student) ? 'Update' : 'Create' }}</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 
 
