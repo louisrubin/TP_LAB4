@@ -19,7 +19,7 @@ class PanelController extends Controller
         } elseif ($tipo == "Profesores"){
             $commissions = Commission::all();
             return view('panel.create', compact('commissions', 'tipo'));
-            
+
         } elseif ($tipo == "Comisiones"){
             $professors = Professor::all();
             $courses = Course::all();
@@ -113,7 +113,7 @@ class PanelController extends Controller
                 break;
             
             case 'Comisiones':
-                $data = Commission::with(['course', 'professors'])
+                $data = Commission::with(['course', 'professors', 'mainProfessor'])
                                     ->orderBy('created_at', 'desc')
                                     ->paginate(12);
                 break;

@@ -25,4 +25,10 @@ class Commission extends Model
     {
         return $this->belongsToMany(Professor::class);
     }
+    
+    public function mainProfessor()
+    {
+        return $this->belongsTo(Professor::class, 'professor_id');
+    }
+
 }

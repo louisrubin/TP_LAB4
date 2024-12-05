@@ -122,9 +122,10 @@
                         <td>{{ $item->horario }}</td>
                         <td>{{ $item->course->name }}</td>
                         <td>
-                            @if( $item->professors->isNotEmpty() )
+                            @if( $item->professors->isNotEmpty() || $item->mainProfessor )
+                                <span>- </span>{{ $item->mainProfessor->name }}<br>
                                 @foreach( $item->professors as $professor )
-                                    {{ $professor->name }},<br> <!-- Muestra el nombre de cada profesor en una nueva línea -->
+                                    <span>- </span>{{ $professor->name }}<br> <!-- Muestra el nombre de cada profesor en una nueva línea -->
                                 @endforeach
                             @else
                                 Sin profesores asignados.

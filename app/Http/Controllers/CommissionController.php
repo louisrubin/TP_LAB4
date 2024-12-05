@@ -23,6 +23,7 @@ class CommissionController extends Controller
         if ($request->horario1 >= $request->horario2) {
             return redirect()->back()->with('error', 'El horario de entrada no puede ser mayor o igual al de salida.');
         }
+        
 
         $commission = new Commission();
         $commission->aula = 'Aula ' . $request->aula;   

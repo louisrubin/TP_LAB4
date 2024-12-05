@@ -10,6 +10,7 @@
     </div>
 @endif
 
+
 <h1 style="margin-bottom: 20px;">Registrar {{ $tipo }}</h1>
 
 @if ($tipo === 'Estudiantes')
@@ -83,13 +84,13 @@
                 value="00:00" style="padding-left: 20%; margin-right: 10px;" required>
 
             <input type="time" name="horario2" class="form-control" 
-                value="00:00" style="padding-left: 20%;" required>
+                value="01:00" style="padding-left: 20%;" required>
         </div>
 
         <div class="form-group">
             <label for="horario1">Asignar Curso</label>
             <select name="course_id" class="form-control" required>
-                <option disabled selected>Seleccionar Curso</option>
+                <option value="" disabled selected>Seleccionar Curso</option>
                 @foreach ($courses as $course)
                     <option value="{{ $course->id }}">{{$course->name}}</option>
                 @endforeach
@@ -100,7 +101,7 @@
             <label for="professor_id">Asignar Profesores</label>
             
             <select name="professor_id" class="form-control" style="width: 80%" required>
-                <option disabled selected>Seleccionar Profesor</option>
+                <option value="" disabled selected>Seleccionar Profesor</option>
                 @foreach ($professors as $professor)
                     <option value="{{ $professor->id }}">
                         {{$professor->name}} ({{ $professor->specialization }})
