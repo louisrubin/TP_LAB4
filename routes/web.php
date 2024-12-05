@@ -1,13 +1,14 @@
 <?php
 use App\Http\Controllers\CalculationController;
+use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Student;
-use App\Models\Course;
+// use App\Models\Student;
+// use App\Models\Course;
 
 
 
@@ -50,6 +51,7 @@ Route::put('/update/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 
     Route::resource('courses', CourseController::class);
     Route::resource('professors', ProfessorController::class);
     Route::resource('subjects', SubjectController::class);
+    Route::resource('commissions', CommissionController::class);
 
 
     Route::get('/blog', function () {

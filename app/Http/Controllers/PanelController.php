@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Course;
 use App\Models\Subject;
@@ -15,10 +15,15 @@ class PanelController extends Controller
         if ($tipo == "Cursos") {
             $subjects = Subject::all();
             return view('panel.create', compact('subjects', 'tipo'));
-            
+
         } elseif ($tipo == "Profesores"){
             $commissions = Commission::all();
             return view('panel.create', compact('commissions', 'tipo'));
+            
+        } elseif ($tipo == "Comisiones"){
+            $professors = Professor::all();
+            $courses = Course::all();
+            return view('panel.create', compact('professors', 'courses', 'tipo'));
         }
         return view('panel.create', ['tipo' => $tipo]);
     }

@@ -57,6 +57,7 @@
                     <th>Especialización</th>
                     <th>Comisiones</th>
                 @elseif($titulo === 'Comisiones')
+                    <th>ID</th>
                     <th>Aula</th>
                     <th>Horario</th>
                     <th>Curso</th>
@@ -116,6 +117,7 @@
                             </form>  
                         </td> 
                     @elseif($titulo === 'Comisiones')
+                        <td>{{ $item->id }}</td>
                         <td>{{ $item->aula }}</td>
                         <td>{{ $item->horario }}</td>
                         <td>{{ $item->course->name }}</td>
@@ -125,7 +127,7 @@
                                     {{ $professor->name }},<br> <!-- Muestra el nombre de cada profesor en una nueva línea -->
                                 @endforeach
                             @else
-                                No hay profesores asignados.
+                                Sin profesores asignados.
                             @endif
                         </td>
                         <td>

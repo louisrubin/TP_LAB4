@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Commission extends Model
-{
-    
+{    
     use HasFactory;
-
-    protected $fillable = ['aula', 'horario', 'course_id'];
+    protected $fillable = ['aula', 'horario', 'course_id', 'professor_id'];
 
     /**
      * Relación con Course: una Commission pertenece a un Course.
@@ -18,9 +16,7 @@ class Commission extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
-    }
-
-    
+    }    
 
     /**
      * Relación con Professor: una Commission puede tener muchos Professors.

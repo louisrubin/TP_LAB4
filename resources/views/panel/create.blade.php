@@ -4,6 +4,12 @@
 
 @section('contenido')
 
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <h1 style="margin-bottom: 20px;">Registrar {{ $tipo }}</h1>
 
 @if ($tipo === 'Estudiantes')
@@ -15,15 +21,17 @@
 @elseif ($tipo === 'Materias')
     <form action="{{ route('subjects.store') }}" method="POST">
 @elseif ($tipo === 'Comisiones')
-    <form action="{{ route('students.store') }}" method="POST">
+    <form action="{{ route('commissions.store') }}" method="POST">
 @endif
 
     @csrf
 
-    <div class="form-group">
-        <label for="name">Nombre</label>
-        <input type="text" name="name" class="form-control" value="" required>
-    </div>
+    @if ($tipo != 'Comisiones')
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" class="form-control" value="" required>
+        </div>
+    @endif
 
     @if ($tipo === 'Estudiantes')
         <div class="form-group">
@@ -60,12 +68,52 @@
     
     @elseif ($tipo === 'Comisiones')
         <div class="form-group">
-            <label for="email">Nro. Aula</label>
-            <input type="text" name="aula" class="form-control" value="" required>
+            <label for="aula">Nro. Aula</label>
+            <input type="number" name="aula" class="form-control" style="width: 50%;" required>
         </div>
+
+
+        <div class="form-group" style="display: flex; justify-content: space-between; ">
+            <label for="horario1">Horario Entrada</label>
+            <label for="horario2">Horario Salida</label>
+        </div>
+        
+        <div class="form-group" style="display: flex; ">
+            <input type="time" name="horario1" class="form-control" 
+                value="00:00" style="padding-left: 20%; margin-right: 10px;" required>
+
+            <input type="time" name="horario2" class="form-control" 
+                value="00:00" style="padding-left: 20%;" required>
+        </div>
+
         <div class="form-group">
-            <label for="email">Horario</label>
-            <input type="text" name="horario" class="form-control" value="" required>
+            <label for="horario1">Asignar Curso</label>
+            <select name="course_id" class="form-control" required>
+                <option disabled selected>Seleccionar Curso</option>
+                @foreach ($courses as $course)
+                    <option value="{{ $course->id }}">{{$course->name}}</option>
+                @endforeach
+            </select>            
+        </div>
+
+        <div class="form-group">
+            <label for="professor_id">Asignar Profesores</label>
+            
+            <select name="professor_id" class="form-control" style="width: 80%" required>
+                <option disabled selected>Seleccionar Profesor</option>
+                @foreach ($professors as $professor)
+                    <option value="{{ $professor->id }}">
+                        {{$professor->name}} ({{ $professor->specialization }})
+                        </option>
+                @endforeach
+            </select>  
+        </div>
+
+        <div class="form-group">
+            <div id="data-container">
+                <!-- SE INSERTA EN EL SCRIPT DE JS AL FINAL DEL BLADE -->
+            </div>   
+            <button type="button" id="add-data" class="btn btn-secondary mt-2">Agregar Profesor</button>        
         </div>
 
     @endif       
@@ -97,12 +145,53 @@
             newDataWrapper.style.justifyContent = 'space-between';
 
             newDataWrapper.innerHTML = `
-                <select name="commissions_id[]" class="form-control mb-2" style="width: 80%" required>
+                <select name="commissions_id[]" class="form-control mb-2" style="width: 80%; " required>
                     <option value="" disabled selected>Seleccionar Comisión</option>
-                    @foreach($commissions as $commissionOption)
-                        <option value="{{ $commissionOption->id }}" 
-                            {{ $commissionOption->id }}>
-                            {{ $commissionOption->aula .' ('. $commissionOption->horario .')' }}
+                    @foreach($commissions as $commission)
+                        <option value="{{ $commission->id }}" 
+                            {{ $commission->id }}>
+                            {{ $commission->aula .' ('. $commission->horario .')' }}
+                        </option>
+                    @endforeach
+                </select>
+                <button type="button" class="btn btn-danger btn-sm remove-data">Eliminar</button>
+            `;
+
+            dataContainer.appendChild(newDataWrapper);
+        });
+
+        // Eliminar un selector de curso
+        dataContainer.addEventListener('click', function (e) {
+            if (e.target.classList.contains('remove-data')) {
+                e.target.closest('.data-select-wrapper').remove();
+            }
+            });
+        });
+        
+    </script>
+
+@elseif ($tipo === 'Comisiones')
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const dataContainer = document.getElementById('data-container');
+        const addDataButton = document.getElementById('add-data');
+
+        // Agregar nuevo selector de curso
+        addDataButton.addEventListener('click', function () {
+            const newDataWrapper = document.createElement('div');
+            newDataWrapper.classList.add('data-select-wrapper');
+
+            // Agregar estilos directamente al nuevo div
+            newDataWrapper.style.display = 'flex';
+            newDataWrapper.style.alignItems = 'center';
+            newDataWrapper.style.justifyContent = 'space-between';
+
+            newDataWrapper.innerHTML = `
+                <select name="professors_id[]" class="form-control mb-2" style="width: 80%" required>
+                    <option value="" disabled selected>Seleccionar Profesor</option>
+                    @foreach($professors as $professor)
+                        <option value="{{ $professor->id }}" >
+                            {{ $professor->name .' ('. $professor->specialization .')' }}
                         </option>
                     @endforeach
                 </select>
