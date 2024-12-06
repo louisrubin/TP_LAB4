@@ -10,6 +10,9 @@ Este proyecto es una aplicación desarrollada en Laravel para gestionar estudian
 
 ---
 
+## Video del proyecto:
+- :arrow_forward:[Sistema de gestion escolar](https://youtu.be/8ZtZY7Cu8Sw)
+
 ## **Requisitos Previos**
 Antes de iniciar, asegúrate de tener instalados los siguientes programas en tu PC:
 
