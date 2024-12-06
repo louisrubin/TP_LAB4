@@ -18,6 +18,7 @@
         </a>
     </div>
 
+
     <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px 0; ">
       
     <form action="{{ route('entity.filter', $titulo) }}" method="GET" class="mb-4">
@@ -154,6 +155,10 @@
         {{ $data->links('pagination::bootstrap-4') }}
     </div>
 </div>
+
+<a href="{{ route('export.pdf', $titulo) }}" class="btn btn-secondary" 
+    style="color: white"; >Exportar a PDF
+</a>
 
 
 @endsection

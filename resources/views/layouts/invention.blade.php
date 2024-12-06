@@ -14,7 +14,7 @@
     <div id="header">
       <div id="logo" style="width: 133px;">
         <a href="{{ route('home') }}">
-          <img src="{{ asset('images/coffee-cup-tea.png') }}" alt="Logo" style="width:100px; vertical-align: middle;">
+          <img src="{{ asset('images/coffee-cup-tea.png') }}" alt="Logo" style=" vertical-align: middle;">
         </a>
       </div>
       <div id="links">
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div id="mainimg">
-      <h3>Laboratorio de Programación 4</h3>
+      <h3>Laboratorio de Computación 4</h3>
       <h4>Sistema de Gestión Escolar en Laravel</h4>
     </div>
     <div id="contentarea">
@@ -43,7 +43,7 @@
           <a href="{{ url()->previous() }}">Regresar</a>
          </p>
         <p><span class="orangetext">29/11/2024</span><br />
-          Los estudiantes de Laboratorio de Programación 4 de la UTN desarrollaron una novedosa calculadora.
+          Los estudiantes de Laboratorio de Computación 4 (2024) de la UTN FRRe desarrollaron una novedosa calculadora.
           <a href="{{ action([App\Http\Controllers\CalculationController::class, 'showForm']) }}">Click aquí</a>
           <br />
           <br />

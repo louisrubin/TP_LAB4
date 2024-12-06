@@ -4,6 +4,7 @@ use App\Http\Controllers\CommissionController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\PDF_Controller;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
@@ -23,14 +24,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
 
 
 Route::get('/', [StudentController::class, 'index'])->name('home');//indico cula sera la ruta de inicio
-Route::get('/students2', [StudentController::class, 'allStudents'])->name('students.section');//indico cula sera la ruta de inicio
+//Route::get('/students2', [StudentController::class, 'allStudents'])->name('students.section');//indico cula sera la ruta de inicio
 
 Route::get('/calculate', [CalculationController::class, 'showForm'])->name('calculate.form');
 Route::post('/calculate', [CalculationController::class, 'calculate'])->name('calculate.result');
@@ -44,7 +41,7 @@ Route::get('/panel/{tipo}/{id}', [App\Http\Controllers\PanelController::class, '
 
 Route::get('/edit/{tipo}/{id?}', [App\Http\Controllers\PanelController::class, 'edit'])->name('panel.edit');
 Route::get('/create/{tipo}', [App\Http\Controllers\PanelController::class, 'create'])->name('panel.create');   
-Route::put('/update/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');   
+//Route::put('/update/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 'update'])->name('panel.update');   
 
 
     Route::resource('students', StudentController::class);
@@ -64,4 +61,4 @@ Route::put('/update/{tipo}/{id}', [App\Http\Controllers\PanelController::class, 
 
     Route::get('/filtrar/{entidad}', [App\Http\Controllers\consultasController::class, 'FiltrarEntidad'])->name('entity.filter');
 
-           
+Route::get('/exportar/{tipo}', [PDF_Controller::class, 'exportToPdf'])->name('export.pdf');
