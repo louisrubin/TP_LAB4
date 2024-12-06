@@ -156,9 +156,10 @@
     </div>
 </div>
 
-<a href="{{ route('export.pdf', $titulo) }}" class="btn btn-secondary" 
-    style="color: white"; >Exportar a PDF
-</a>
-
+@if ($titulo == 'Cursos')
+    <a href="{{ route('export.pdf', $titulo) }}" class="btn btn-secondary" 
+        style="color: white"; >Exportar a PDF
+    </a>
+@endif
 
 @endsection
